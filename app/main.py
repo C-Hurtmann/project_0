@@ -47,7 +47,6 @@ def get_bank_statement(from_: int, to_: int) -> requests.Response:
 
 
 def save_tansactions(dataset: list[TransactionSchema]) -> None:
-    need_to_commit = False
     with session_instance(engine=engine) as session:
         for transaction_data in dataset:
             is_exist = bool(
@@ -58,12 +57,11 @@ def save_tansactions(dataset: list[TransactionSchema]) -> None:
             if not is_exist:
                 transaction = Transaction(**transaction_data.__dict__)
                 session.add(transaction)
-                need_to_commit = True
-        if need_to_commit:
-            Logger.debug(
+        if new_transactions := session.new:
+            Logger.info(
                 (
-                    'Commit new transaction at '
-                    + str(unix_to_datetime(transaction.unix_time))
+                    f'Commit {len(new_transactions)} new transaction'
+                    + 's' if len(new_transactions) > 1 else ''
                 )
             )
             session.commit()
@@ -78,7 +76,7 @@ def main() -> None:
         circle += 1
         Logger.debug(f'Circle: {circle}')
         transactions = set()
-        week_ago = datetime.now() - timedelta(days=7)
+        week_ago = datetime.now() - timedelta(days=30)
         res = get_bank_statement(
             from_=datetime_to_unix(week_ago),
             to_=datetime_to_unix(datetime.now())
@@ -90,7 +88,7 @@ def main() -> None:
         else:
             transaction_list = TransactionSchema(many=True).loads(res.content)
             transactions.update(transaction_list)
-            Logger.debug('Tmp transactions count ' + str(len(transactions)))
+            Logger.debug(f'Tmp transactions count - {len(transactions)}')
             save_tansactions(dataset=transactions)
             time.sleep(60)
 

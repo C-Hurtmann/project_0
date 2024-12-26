@@ -12,6 +12,7 @@ class TransactionDTO:
     original_amount: int
     currency_code: int
     commission_rate: int
+    balance: int
 
     def __hash__(self) -> int:
         return hash(self.bank_id)
@@ -30,6 +31,7 @@ class TransactionSchema(Schema):
     original_amount = fields.Int(data_key='operationAmount')
     currency_code = fields.Int(data_key='currencyCode')
     commission_rate = fields.Int(data_key='commissionRate')
+    balance = fields.Int(data_key='balance')
 
     @post_load
     def create_transaction(self, data, **kwargs) -> TransactionDTO:

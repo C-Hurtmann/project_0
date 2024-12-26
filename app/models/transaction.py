@@ -17,3 +17,4 @@ class Transaction(Base):
     original_amount = Column(Integer, nullable=False)
     currency_code = Column(Integer, nullable=False)
     commission_rate = Column(Integer, nullable=False)
+    balance = Column(Integer, nullable=False)
