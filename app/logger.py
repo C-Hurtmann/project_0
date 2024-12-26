@@ -7,8 +7,16 @@ logging.config.dictConfig(
         'version': 1,
         'formatters': {
             'standard': {
-                'format': '%(asctime)s - %(levelname)s:: %(message)s',
-                'datefmt': '%Y-%m-%d %H:%M:%S'
+                '()': 'colorlog.ColoredFormatter',
+                'format': (
+                    '%(log_color)s%(asctime)s - %(levelname)-8s:: %(message)s'
+                ),
+                'datefmt': '%Y-%m-%d %H:%M:%S',
+                'log_colors': {
+                    'DEBUG': 'yellow',
+                    'INFO': 'white',
+                    'ERROR': 'red',
+                },
             }
         },
         'handlers': {
