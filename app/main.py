@@ -9,8 +9,8 @@ from typing import Generator
 
 from schemas import TransactionSchema
 from models import Transaction
-from app.utils import unix_to_datetime, datetime_to_unix
-from app.logger import Logger
+from utils import unix_to_datetime, datetime_to_unix
+from logger import Logger
 from contextlib import contextmanager
 
 
@@ -63,7 +63,7 @@ def save_tansactions(dataset: list[TransactionSchema]) -> None:
             Logger.debug(
                 (
                     'Commit new transaction at '
-                    + unix_to_datetime(transaction.unix_time)
+                    + str(unix_to_datetime(transaction.unix_time))
                 )
             )
             session.commit()
