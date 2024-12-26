@@ -9,7 +9,8 @@ from typing import Generator
 
 from schemas import TransactionSchema
 from models import Transaction
-from app.utils import unix_time
+from app.utils import unix_to_datetime, datetime_to_unix
+from app.logger import Logger
 from contextlib import contextmanager
 
 
@@ -29,7 +30,7 @@ def session_instance(engine: Engine) -> Generator[Session, None, None]:
     try:
         yield session
     except Exception as e:
-        print(f'SESSION ERROR {type(e)}: {e}')
+        Logger.error(f'Session error {type(e)}: {e}')
         session.rollback()
         raise
     finally:
@@ -37,7 +38,7 @@ def session_instance(engine: Engine) -> Generator[Session, None, None]:
 
 
 def get_bank_statement(from_: int, to_: int) -> requests.Response:
-    print('GET BANK STATEMENT')
+    Logger.debug('Get bank statement')
     account = 0
     root = f'personal/statement/{account}/{from_}/{to_}'
     return requests.get(
@@ -59,31 +60,37 @@ def save_tansactions(dataset: list[TransactionSchema]) -> None:
                 session.add(transaction)
                 need_to_commit = True
         if need_to_commit:
-            print(f'COMMITTING NEW TRANSACTION AT {transaction.unix_time}...')
+            Logger.debug(
+                (
+                    'Commit new transaction at '
+                    + unix_to_datetime(transaction.unix_time)
+                )
+            )
             session.commit()
         else:
-            print('NO NEW TRANSACTIONS')
+            Logger.debug('No new transactions')
 
 
 def main() -> None:
-    print('STARTING...')
+    Logger.info('Starting...')
     circle = 0
     while True:
         circle += 1
-        print(f'CIRCLE: {circle}')
+        Logger.debug(f'Circle: {circle}')
         transactions = set()
         week_ago = datetime.now() - timedelta(days=7)
         res = get_bank_statement(
-            from_=unix_time(week_ago), to_=unix_time(datetime.now())
+            from_=datetime_to_unix(week_ago),
+            to_=datetime_to_unix(datetime.now())
         )
         if res.status_code != 200:
             time.sleep(60)
-            print('ERROR waiting 60 seconds')
+            Logger.debug('Bank service do not respond. Waiting 60 seconds')
             continue
         else:
             transaction_list = TransactionSchema(many=True).loads(res.content)
             transactions.update(transaction_list)
-            print('TMP TRANSACTIONS COUNT', len(transactions))
+            Logger.debug('Tmp transactions count ' + str(len(transactions)))
             save_tansactions(dataset=transactions)
             time.sleep(60)
 
@@ -92,4 +99,4 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print('STOPPING...')
+        Logger.info('Stopping...')

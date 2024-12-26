@@ -2,5 +2,9 @@ from datetime import datetime
 import time
 
 
-def unix_time(datetime_: datetime) -> int:
+def datetime_to_unix(datetime_: datetime) -> int:
     return int(time.mktime(datetime_.timetuple()))
+
+
+def unix_to_datetime(unix_time: int) -> datetime:
+    return datetime.fromtimestamp(unix_time)
