@@ -1,21 +1,4 @@
-from marshmallow import Schema, fields, EXCLUDE, post_load
-from dataclasses import dataclass
-
-
-@dataclass
-class TransactionDTO:
-    bank_id: str
-    unix_time: int
-    mcc: int
-    original_mcc: int
-    amount: int
-    original_amount: int
-    currency_code: int
-    commission_rate: int
-    balance: int
-
-    def __hash__(self) -> int:
-        return hash(self.bank_id)
+from marshmallow import Schema, fields, EXCLUDE
 
 
 class TransactionSchema(Schema):
@@ -32,7 +15,3 @@ class TransactionSchema(Schema):
     currency_code = fields.Int(data_key='currencyCode')
     commission_rate = fields.Int(data_key='commissionRate')
     balance = fields.Int(data_key='balance')
-
-    @post_load
-    def create_transaction(self, data, **kwargs) -> TransactionDTO:
-        return TransactionDTO(**data)
