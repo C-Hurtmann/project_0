@@ -8,15 +8,30 @@ services:
       - "6379:6379"
     networks:
       - app-network
+    restart: always
 
-  app:
+  django:
+    container_name: django
     build: .
-    container_name: celery-app
-    command: poetry run celery -A celery_app worker --loglevel=info
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  celery:
+    container_name: celery
+    build: .
+    command: celery --app=project_0 worker --loglevel=INFO
+    volumes:
+      - .:/app
     depends_on:
       - redis
     networks:
       - app-network
+    restart: always
 
 networks:
   app-network:

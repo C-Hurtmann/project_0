@@ -1,20 +1,26 @@
-# Use an official Python runtime as a parent image
 FROM python:3.12-slim
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
+
+# Environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Install Poetry
 RUN pip install poetry
 
-# Copy the current directory contents into the container at /app
+# Copy only the necessary files for dependencies installation
+COPY pyproject.toml poetry.lock /app/
+
+# Install dependencies
+RUN poetry config virtualenvs.create false && poetry install --no-root
+
+# Copy the rest of the application code
 COPY . /app
 
-# Install dependencies using Poetry
-RUN poetry install --no-root
+# Expose the Django default port
+EXPOSE 8000
 
-# Expose port 6379 for Redis
-EXPOSE 6379
-
-# Command to run Celery worker with Poetry
-CMD ["poetry", "run", "celery", "-A", "app.tasks", "worker", "--loglevel=info"]
+# Default command to run the server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
