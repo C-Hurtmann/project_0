@@ -10,13 +10,10 @@ from .models import Transaction
 from .serializers import TransactionSerializer
 from .utils import to_unix
 
-from celery import Celery, chain
-from celery.signals import worker_ready
 from celery.utils.log import get_task_logger
-from datetime import datetime, timedelta
-from typing import Any
+from datetime import datetime
 
-from .utils import to_unix, to_datetime, load_metadata
+from .utils import to_unix, to_datetime
 
 
 SOURCE_PATH = 'https://api.monobank.ua/'
@@ -53,25 +50,3 @@ def save_transactions(dataset: Iterable[TransactionSerializer]) -> dict | None:
                 new_transactions_qty += 1
     if new_transactions_qty:
         return {'last_run': to_unix(datetime.now())}
-
-
-@worker_ready.connect
-def setup_collector(sender: Celery, **kwargs: Any):
-    now = datetime.now()
-    from_ = now - timedelta(days=30)
-    collect_transactions_chain = chain(
-        get_bank_statement.s(from_=to_unix(from_), to_=to_unix(now)),
-        save_transactions.s()
-    )
-    last_run = load_metadata().get('last_run')
-    if last_run and (
-        time_before_run := (now - to_datetime(last_run))
-    ) < timedelta(days=1):
-        collect_transactions_chain.apply_async(
-            countdown=time_before_run.total_seconds()
-        )
-        task_state = f'scheduled to {now + time_before_run}'
-    else:
-        collect_transactions_chain.delay()
-        task_state = 'started'
-    logger.info(f'Collect {task_state}')
