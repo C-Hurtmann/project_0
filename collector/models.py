@@ -11,3 +11,8 @@ class Transaction(models.Model):
     currency_code = models.IntegerField()
     commission_rate = models.IntegerField()
     balance = models.IntegerField()
+    
+    class Meta:
+        db_table = 'transactions'
+        verbose_name = 'Transaction'
+        verbose_name_plural = 'Transactions'

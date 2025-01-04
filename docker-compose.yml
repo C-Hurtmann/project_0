@@ -1,6 +1,18 @@
 version: "3.8"
 
 services:
+  postgres:
+      image: postgres:17
+      container_name: postgres
+      environment:
+        POSTGRES_USER: admin
+        POSTGRES_PASSWORD: admin
+        POSTGRES_DB: postgres
+      networks:
+        - app-network
+      ports:
+        - "5432:5432"
+      restart: always
   redis:
     image: redis:latest
     container_name: redis
@@ -13,12 +25,15 @@ services:
   django:
     container_name: django
     build: .
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     depends_on:
       - redis
+    networks:
+      - app-network
     restart: unless-stopped
 
   celery:
@@ -28,7 +43,9 @@ services:
     volumes:
       - .:/app
     depends_on:
+      - postgres
       - redis
+      - django
     networks:
       - app-network
     restart: always

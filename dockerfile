@@ -16,11 +16,9 @@ COPY pyproject.toml poetry.lock /app/
 # Install dependencies
 RUN poetry config virtualenvs.create false && poetry install --no-root
 
-# Copy the rest of the application code
+COPY ./entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 COPY . /app
 
-# Expose the Django default port
-EXPOSE 8000
-
-# Default command to run the server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["/app/entrypoint.sh"]

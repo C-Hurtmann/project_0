@@ -1,28 +1,17 @@
-from rest_framework import serializers
-from .models import Transaction
+from marshmallow import Schema, fields as f, EXCLUDE
 
 
-class TransactionSerializer(serializers.ModelSerializer):
-    bank_id = serializers.CharField(source='id')
-    unix_time = serializers.IntegerField(source='time')
-    mcc = serializers.IntegerField(source='mcc')
-    original_mcc = serializers.IntegerField(source='originalMcc')
-    amount = serializers.IntegerField(source='amount')
-    original_amount = serializers.IntegerField(source='operationAmount')
-    currency_code = serializers.IntegerField(source='currencyCode')
-    commission_rate = serializers.IntegerField(source='commissionRate')
-    balance = serializers.IntegerField(source='balance')
+class TransactionSerializer(Schema):
 
     class Meta:
-        model = Transaction
-        fields = [
-            'bank_id',
-            'unix_time',
-            'mcc',
-            'original_mcc',
-            'amount',
-            'original_amount',
-            'currency_code', 
-            'commission_rate',
-            'balance'
-        ]
+        unknown = EXCLUDE
+
+    bank_id = f.Str(data_key='id')
+    unix_time = f.Int(data_key='time')
+    mcc = f.Int()
+    original_mcc = f.Int(data_key='originalMcc')
+    amount = f.Int()
+    original_amount = f.Int(data_key='operationAmount')
+    currency_code = f.Int(data_key='currencyCode')
+    commission_rate = f.Int(data_key='commissionRate')
+    balance = f.Int(data_key='balance')

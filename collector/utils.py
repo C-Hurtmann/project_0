@@ -14,12 +14,12 @@ def to_datetime(unix_time: int) -> datetime:
 
 
 def load_metadata() -> dict:
-    if not settings.METADATA_PATH.exists():
+    if not settings.METADATA_DIR.exists():
         return {}
-    with open(settings.METADATA_PATH / 'metadata.json', 'r') as f:
+    with open(settings.METADATA_DIR / 'metadata.json', 'r') as f:
         return json.load(f)
 
 
 def dump_metadata(data: dict) -> None:
-    with open(settings.METADATA_PATH / 'metadata.json', 'w') as f:
+    with open(settings.METADATA_DIR / 'metadata.json', 'w') as f:
         json.dump(data, f, indent=4)

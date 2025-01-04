@@ -23,6 +23,7 @@ def get_bank_statement(from_: int, to_: int) -> set[TransactionSchema]:
     root = f'personal/statement/{account}/{from_}/{to_}'
     res = get(SOURCE_PATH + root, headers={'X-Token': MONO_API_USER_TOKEN})
     if res.status_code == 200:
+        print('Success')
         return TransactionSchema(many=True).loads(res.content)
     raise ConnectionError('Bank service do not respond')
 
@@ -32,7 +33,7 @@ def save_tansactions(dataset: set[TransactionSchema]) -> None:
         for transaction_data in dataset:
             is_exist = bool(
                 session.query(Transaction).filter_by(
-                    bank_id=transaction_data.bank_id
+                    bank_id=transaction_data['bank_id']
                 ).first()
             )
             if not is_exist:
@@ -40,15 +41,13 @@ def save_tansactions(dataset: set[TransactionSchema]) -> None:
                 session.add(transaction)
         if session.new:
             session.commit()
-        else:
 
 
 def main() -> None:
     circle = 0
     while True:
         circle += 1
-        transactions = set()
-        week_ago = datetime.now() - timedelta(days=30)
+        week_ago = datetime.now() - timedelta(days=7)
         try:
             transaction_list = get_bank_statement(
                 from_=datetime_to_unix(week_ago),
@@ -58,8 +57,8 @@ def main() -> None:
             time.sleep(60)
             continue
         else:
-            transactions.update(transaction_list)
-            save_tansactions(dataset=transactions)
+            print(transaction_list)
+            # save_tansactions(dataset=transaction_list)
             time.sleep(60)
 
 
