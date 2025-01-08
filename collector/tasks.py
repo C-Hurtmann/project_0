@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Iterable
 import requests
 
@@ -13,7 +13,7 @@ from .utils import to_unix
 from celery.utils.log import get_task_logger
 from datetime import datetime
 
-from .utils import to_unix, to_datetime
+from .utils import to_unix, to_datetime, dump_metadata
 
 
 SOURCE_PATH = 'https://api.monobank.ua/'
@@ -38,6 +38,7 @@ def get_bank_statement(from_: int, to_: int) -> list[dict]:
     raise ConnectionError(f'Bank service do not respond {res.status_code}')
 
 @shared_task
+@dump_metadata
 def save_transactions(dataset: Iterable[TransactionSerializer]) -> dict | None:
     new_transactions_qty = 0
     for transaction_data in dataset:
@@ -49,4 +50,4 @@ def save_transactions(dataset: Iterable[TransactionSerializer]) -> dict | None:
                 new_transaction.save()
                 new_transactions_qty += 1
     if new_transactions_qty:
-        return {'last_run': to_unix(datetime.now())}
+        return {'last_run': to_unix(datetime.now(tz=timezone.utc))}
