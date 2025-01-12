@@ -13,6 +13,7 @@ services:
       ports:
         - "5432:5432"
       restart: always
+
   redis:
     image: redis:latest
     container_name: redis
@@ -39,7 +40,7 @@ services:
   celery:
     container_name: celery
     build: .
-    command: celery --app=project_0 worker --loglevel=INFO
+    command: celery -A project_0 worker -l INFO -B
     volumes:
       - .:/app
     depends_on:

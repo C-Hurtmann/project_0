@@ -7,3 +7,4 @@ __pycache__/
 .logs
 .meta
 command.md
+celerybeat-schedule

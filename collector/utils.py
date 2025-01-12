@@ -5,15 +5,16 @@ from django.conf import settings
 from telebot import TeleBot
 import time
 import json
+from collections import namedtuple
 
-
+DateRange = namedtuple('DateRange', ['from_', 'to_'])
 
 def to_unix(datetime_: datetime) -> int:
     return int(time.mktime(datetime_.timetuple()))
 
 
 def to_datetime(unix_time: int) -> datetime:
-    return datetime.fromtimestamp(unix_time, tz=timezone.utc)
+    return datetime.fromtimestamp(unix_time)
 
 
 def load_metadata() -> dict:

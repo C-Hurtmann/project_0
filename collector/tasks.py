@@ -1,8 +1,8 @@
-from datetime import datetime, timezone
-from typing import Iterable
+from datetime import datetime, timedelta
+from typing import Iterable, Any
 import requests
 
-from celery import shared_task
+from celery import shared_task, chain
 from django.conf import settings
 from django.db import transaction
 
@@ -13,12 +13,18 @@ from .utils import to_unix
 from celery.utils.log import get_task_logger
 from datetime import datetime
 
-from .utils import to_unix, to_datetime, dump_metadata
+from .utils import to_unix, to_datetime, Bot
 
 
 SOURCE_PATH = 'https://api.monobank.ua/'
 
 logger = get_task_logger(__name__)
+
+@shared_task
+def handle_error(
+    task_id: str, exc: Exception, traceback: str, **kwargs: Any
+) -> None:
+    Bot.send_message(f'{exc} occurred in {task_id=}\n{traceback}')
 
 
 @shared_task(
@@ -38,8 +44,9 @@ def get_bank_statement(from_: int, to_: int) -> list[dict]:
     raise ConnectionError(f'Bank service do not respond {res.status_code}')
 
 @shared_task
-@dump_metadata
-def save_transactions(dataset: Iterable[TransactionSerializer]) -> dict | None:
+def save_bank_transactions(
+    dataset: Iterable[TransactionSerializer]
+) -> dict | None:
     new_transactions_qty = 0
     for transaction_data in dataset:
         with transaction.atomic():
@@ -50,4 +57,21 @@ def save_transactions(dataset: Iterable[TransactionSerializer]) -> dict | None:
                 new_transaction.save()
                 new_transactions_qty += 1
     if new_transactions_qty:
-        return {'last_run': to_unix(datetime.now(tz=timezone.utc))}
+        now = datetime.now()
+        Bot.send_message(
+            f'Collector run at {now} is successful. '
+            f'{new_transactions_qty} transactions saved'
+        )
+        return {'last_run': to_unix(now)}
+    Bot.send_message('Nothing to collect')
+
+
+@shared_task
+def collect_transactions() -> None:
+    now = datetime.now()
+    chain(
+        get_bank_statement.s(
+            from_=to_unix(now - timedelta(days=30)), to_=to_unix(now)
+            ),
+        save_bank_transactions.s()
+    ).apply_async(link_error=handle_error.s())
