@@ -80,17 +80,7 @@ WSGI_APPLICATION = 'project_0.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': env.db(),
-    'tests': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test_db',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5433',
-    }
-}
+DATABASES = {'default': env.db()}
 
 
 # Password validation
@@ -117,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Kyiv'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
