@@ -40,6 +40,7 @@ def get_bank_statement(from_: int, to_: int) -> list[dict]:
         SOURCE_PATH + root, headers={'X-Token': settings.MONO_API_USER_TOKEN}
     )
     if res.status_code == 200:
+        logger.info(f'Raw content: {res.content}')
         return TransactionSerializer(many=True).loads(res.content)
     raise ConnectionError(f'Bank service do not respond {res.status_code}')
 
