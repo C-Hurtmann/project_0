@@ -3,9 +3,10 @@ import json
 
 from unittest.mock import patch
 from dataclasses import asdict
+from datetime import datetime
 from django.conf import settings
 from collector.tasks import get_bank_statement
-from .utils import BankTransaction
+from .utils import BankTransaction, random_timestamp
 
 
 @pytest.mark.celery
@@ -14,8 +15,8 @@ def test_get_bank_statement_success(mock_get) -> None:
     transaction = BankTransaction()
     mock_get.return_value.status_code = 200
     mock_get.return_value.content = json.dumps([asdict(transaction)])
-    from_ = 1234567890
-    to_ = 1234567999
+    from_ = random_timestamp()
+    to_ = datetime.now().timestamp()
 
     result = get_bank_statement(from_, to_)
     assert result == [
@@ -31,3 +32,16 @@ def test_get_bank_statement_success(mock_get) -> None:
             'balance': transaction.balance
         }
     ]
+
+
+@pytest.mark.celery
+@patch('collector.tasks.requests.get')
+def test_get_bank_statement_connection_error(mock_get) -> None:
+    transaction = BankTransaction()
+    mock_get.return_value.status_code = 404
+    mock_get.return_value.content = json.dumps([asdict(transaction)])
+    from_ = random_timestamp()
+    to_ = datetime.now().timestamp()
+
+    with pytest.raises(ConnectionError):
+        result = get_bank_statement(from_, to_)
