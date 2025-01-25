@@ -44,4 +44,4 @@ def test_get_bank_statement_connection_error(mock_get) -> None:
     to_ = datetime.now().timestamp()
 
     with pytest.raises(ConnectionError):
-        result = get_bank_statement(from_, to_)
+        get_bank_statement(from_, to_)
