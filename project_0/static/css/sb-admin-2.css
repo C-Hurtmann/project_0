@@ -10828,12 +10828,26 @@ a:focus {
   position: relative;
   height: 10rem;
   width: 100%;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .chart-area {
     height: 20rem;
   }
+}
+.chart-area .plot-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+.chart-area .main-svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+.chart-area .modebar {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .chart-bar {
