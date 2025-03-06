@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Transaction(models.Model):
-    bank_id = models.CharField(max_length=255)
+    bank_id = models.CharField(max_length=255, unique=True)
     unix_time = models.IntegerField()
     mcc = models.IntegerField()
     original_mcc = models.IntegerField()
