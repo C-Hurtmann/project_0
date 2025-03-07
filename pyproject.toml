@@ -32,6 +32,7 @@ django-redis = "^5.4.0"
 channels-redis = "^4.2.1"
 dash-renderer = "^1.9.1"
 pandas = "^2.2.3"
+numpy = "^2.2.3"
 
 
 [build-system]

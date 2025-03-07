@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from plotly.offline import plot
-import plotly.express as px
 import plotly.graph_objects as go
+import numpy as np
 import pandas as pd 
 
 from collector.models import Transaction
@@ -30,6 +30,10 @@ def home(request):
     x = result_by_date['date'].tolist()
     y = result_by_date['balance'].tolist()
     
+    x_numeric = np.array([pd.to_datetime(date).timestamp() for date in x])
+
+    coeffs = np.polyfit(x_numeric, y, 1)
+    trendline = np.polyval(coeffs, x_numeric)
 
     scatter = go.Scatter(
         x=x,
@@ -42,9 +46,26 @@ def home(request):
             width=3,
             shape='linear'
         ),
-        hoverinfo='y',
-        name='Balance'
+        hoverinfo='skip',
+        hovertemplate="<b>Date:</b> %{x}<br><b>Balance:</b> %{y:.2f} UAH",
+        name='Balance',
+        showlegend=False
     )
+    trend_trace = go.Scatter(
+        x=x,
+        y=trendline,
+        mode='lines',
+        line=dict(
+            color='rgba(255, 0, 0, 1)',
+            width=2,
+            dash='dash'
+        ),
+        hoverinfo='none',
+        name='Trend Line',
+        showlegend=False,
+        xaxis='x2'
+    )
+
     layout = dict(
         title=dict(
             text='Balance per day',
@@ -63,6 +84,12 @@ def home(request):
                 bordercolor="grey",
             )
         ),
+        xaxis2=dict(
+            overlaying='x',
+            showgrid=False,
+            zeroline=False,
+            visible=False
+        ),
         yaxis=dict(
             title='Balance (UAH)',
             showgrid=True,
@@ -74,7 +101,7 @@ def home(request):
         hovermode='x unified',
         margin=dict(l=20, r=20, t=40, b=40)
     )
-    fig = go.Figure(data=[scatter], layout=layout)
+    fig = go.Figure(data=[scatter, trend_trace], layout=layout)
     plot_div = plot(fig, output_type='div')
     context = {'plot_div': plot_div}
     
