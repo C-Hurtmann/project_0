@@ -3,16 +3,17 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-{% load plotly_dash %}
 <!-- Area Chart -->
 <div class="col-xl-8 col-lg-7">
+    {% for plot in plot_divs %}
     <div class="card shadow mb-4">
         <!-- Card Body -->
         <div class="card-body">
             <!-- <div class="chart-area"> -->
-                {{ plot_div|safe }}
+                {{ plot|safe }}
             <!-- </div> -->
         </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}

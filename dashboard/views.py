@@ -1,7 +1,7 @@
+from datetime import date
 from django.shortcuts import render
 from plotly.offline import plot
 import plotly.graph_objects as go
-import numpy as np
 import pandas as pd 
 
 from collector.models import Transaction
@@ -9,10 +9,12 @@ from collector.models import Transaction
 
 # Create your views here.
 def home(request):
+    plot_divs = []
+    # Data transformation
     transactions = pd.DataFrame(list(Transaction.objects.order_by('unix_time').values()))
     transactions['date'] = pd.to_datetime(transactions['unix_time'], unit='s').dt.date
 
-    date_range = pd.date_range(transactions['date'].min(), transactions['date'].max(), freq='D').date
+    date_range = pd.date_range(transactions['date'].min(), date.today(), freq='D').date
     start_transaction = transactions[transactions['unix_time'] == transactions['unix_time'].min()]
     start_balance = start_transaction['balance'].iloc[0] - start_transaction['amount'].iloc[0]
 
@@ -26,15 +28,9 @@ def home(request):
     result_by_date['balance'] = result_by_date['amount'].cumsum() + start_balance
     result_by_date['balance'] = (result_by_date['balance'] / 100).round(2)
 
-
+    # Create scatter
     x = result_by_date['date'].tolist()
     y = result_by_date['balance'].tolist()
-    
-    x_numeric = np.array([pd.to_datetime(date).timestamp() for date in x])
-
-    coeffs = np.polyfit(x_numeric, y, 1)
-    trendline = np.polyval(coeffs, x_numeric)
-
     scatter = go.Scatter(
         x=x,
         y=y,
@@ -47,23 +43,9 @@ def home(request):
             shape='linear'
         ),
         hoverinfo='skip',
-        hovertemplate="<b>Date:</b> %{x}<br><b>Balance:</b> %{y:.2f} UAH",
+        hovertemplate="%{y:.2f} UAH<br>Date: %{x}",
         name='Balance',
         showlegend=False
-    )
-    trend_trace = go.Scatter(
-        x=x,
-        y=trendline,
-        mode='lines',
-        line=dict(
-            color='rgba(255, 0, 0, 1)',
-            width=2,
-            dash='dash'
-        ),
-        hoverinfo='none',
-        name='Trend Line',
-        showlegend=False,
-        xaxis='x2'
     )
 
     layout = dict(
@@ -84,12 +66,6 @@ def home(request):
                 bordercolor="grey",
             )
         ),
-        xaxis2=dict(
-            overlaying='x',
-            showgrid=False,
-            zeroline=False,
-            visible=False
-        ),
         yaxis=dict(
             title='Balance (UAH)',
             showgrid=True,
@@ -101,8 +77,17 @@ def home(request):
         hovermode='x unified',
         margin=dict(l=20, r=20, t=40, b=40)
     )
-    fig = go.Figure(data=[scatter, trend_trace], layout=layout)
-    plot_div = plot(fig, output_type='div')
-    context = {'plot_div': plot_div}
-    
+    scatter_fig = go.Figure(data=[scatter], layout=layout)
+    plot_divs.append(plot(scatter_fig, output_type='div'))
+
+    #Create pie
+    amount_by_mcc = transactions.groupby('mcc')['amount'].sum().reset_index()
+    labels = amount_by_mcc['mcc'].tolist()
+    values = amount_by_mcc['amount'].apply(abs).tolist()
+
+    pie = go.Pie(labels=labels, values=values)
+    pie_fig = go.Figure(data=[pie], layout=layout)
+    plot_divs.append(plot(pie_fig, output_type='div'))
+
+    context = {'plot_divs': plot_divs}
     return render(request, 'dashboard/home.html', context)
