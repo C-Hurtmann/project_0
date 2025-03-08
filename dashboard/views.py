@@ -1,3 +1,4 @@
+import json
 from datetime import date
 from django.shortcuts import render
 from plotly.offline import plot
@@ -43,7 +44,7 @@ def home(request):
             shape='linear'
         ),
         hoverinfo='skip',
-        hovertemplate="%{y:.2f} UAH<br>Date: %{x}",
+        hovertemplate="%{y:.2f} UAH<br>Date : %{x}",
         name='Balance',
         showlegend=False
     )
@@ -53,6 +54,8 @@ def home(request):
             text='Balance per day',
             font=dict(size=18, color='#858796')
         ),
+        height=400,
+        width = 775,
         xaxis=dict(
             title='Date',
             showgrid=True,
@@ -78,15 +81,66 @@ def home(request):
         margin=dict(l=20, r=20, t=40, b=40)
     )
     scatter_fig = go.Figure(data=[scatter], layout=layout)
-    plot_divs.append(plot(scatter_fig, output_type='div'))
+    plot_divs.append(
+        plot(
+            scatter_fig,
+            output_type='div',
+
+        )
+    )
 
     #Create pie
-    amount_by_mcc = transactions.groupby('mcc')['amount'].sum().reset_index()
-    labels = amount_by_mcc['mcc'].tolist()
-    values = amount_by_mcc['amount'].apply(abs).tolist()
+    with open('resources/mcc.json') as f:
+        mcc_description = json.load(f)
 
-    pie = go.Pie(labels=labels, values=values)
+    expenses = transactions[transactions['amount'] < 0]
+    expenses_by_mcc = expenses.groupby('mcc')['amount'].sum().reset_index()
+    expenses_by_mcc['mcc_description'] = expenses_by_mcc['mcc'].apply(str).map(mcc_description).fillna('Unknown')
+    categories = expenses_by_mcc['mcc_description'].tolist()
+    values = expenses_by_mcc['amount'].apply(abs).apply(lambda x: x / 100).tolist()
+    total = sum(values)
+    plot_width = 375
+    plot_height = 400
+    anotation_font_size = min(plot_width, plot_height) // 20
+
+    pie = go.Pie(
+        labels=categories,
+        values=values,
+        hole=0.4,
+        textinfo='none',
+        marker=dict(
+            # colors=['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A'],  # Custom slice colors
+            line=dict(color='#FFFFFF', width=2)  # White border around slices
+        ),
+        # pull=[0.1 if val == max(values) else 0 for val in values],
+        sort=True,
+        direction='clockwise',
+        showlegend=False
+    )
+    layout = dict(
+        title=dict(
+            text='Expenses',
+            font=dict(size=18, color='#858796')
+        ),
+        width=plot_width,
+        height=plot_height,
+        annotations=[
+            dict(
+                text=f"Total<br>{total}",
+                font=dict(size=anotation_font_size, color='black'),
+                showarrow=False,
+                x=0.5,
+                y=0.5,
+                xref="paper",
+                yref="paper",
+                align="center"
+            )
+        ],
+        margin=dict(l=20, r=30, t=50, b=50)
+
+    )
     pie_fig = go.Figure(data=[pie], layout=layout)
+
     plot_divs.append(plot(pie_fig, output_type='div'))
 
     context = {'plot_divs': plot_divs}
