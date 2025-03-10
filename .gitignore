@@ -7,6 +7,7 @@ __pycache__/
 *.py[cod]
 .logs
 .meta
+uploads/
 command.md
 celerybeat-schedule
 sandbox.py

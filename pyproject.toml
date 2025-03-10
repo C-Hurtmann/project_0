@@ -33,6 +33,7 @@ channels-redis = "^4.2.1"
 dash-renderer = "^1.9.1"
 pandas = "^2.2.3"
 numpy = "^2.2.3"
+python-telegram-bot = "^21.11.1"
 
 
 [build-system]

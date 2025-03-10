@@ -36,7 +36,19 @@ services:
     networks:
       - app-network
     restart: unless-stopped
-
+  telegram-bot:
+    container_name: telegram-bot
+    build: .
+    command: python manage.py startbot
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - redis
+      - django
+    networks:
+      - app-network
+    restart: always
   celery:
     container_name: celery
     build: .
@@ -46,6 +58,7 @@ services:
     depends_on:
       - postgres
       - redis
+      - telegram-bot
       - django
     networks:
       - app-network

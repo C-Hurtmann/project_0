@@ -98,7 +98,7 @@ def home(request):
     expenses_by_mcc['mcc_description'] = expenses_by_mcc['mcc'].apply(str).map(mcc_description).fillna('Unknown')
     categories = expenses_by_mcc['mcc_description'].tolist()
     values = expenses_by_mcc['amount'].apply(abs).apply(lambda x: x / 100).tolist()
-    total = sum(values)
+    total = round(sum(values), 2)
     plot_width = 375
     plot_height = 400
     anotation_font_size = min(plot_width, plot_height) // 20
@@ -109,10 +109,8 @@ def home(request):
         hole=0.4,
         textinfo='none',
         marker=dict(
-            # colors=['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A'],  # Custom slice colors
             line=dict(color='#FFFFFF', width=2)  # White border around slices
         ),
-        # pull=[0.1 if val == max(values) else 0 for val in values],
         sort=True,
         direction='clockwise',
         showlegend=False
