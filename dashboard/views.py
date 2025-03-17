@@ -55,7 +55,7 @@ def home(request):
             font=dict(size=18, color='#858796')
         ),
         height=400,
-        width = 775,
+        width=775,
         xaxis=dict(
             title='Date',
             showgrid=True,
@@ -89,7 +89,7 @@ def home(request):
         )
     )
 
-    #Create pie
+    # Create pie
     with open('resources/mcc.json') as f:
         mcc_description = json.load(f)
 

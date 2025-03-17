@@ -9,7 +9,9 @@ from django.db.models.signals import post_delete, post_save
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from typing import Any
 
-from .tasks import collect_transactions, collect_staatement_transactions
+from collector.serializers import SourceFrom, TransactionSerializer
+
+from .tasks import collect_transactions, save_bank_transactions
 from .models import StatementFile
 
 
@@ -35,11 +37,13 @@ def on_worker_ready(sender: Consumer, **kwargs: Any) -> None:
 def proccess_csv_file(sender, instance, created, **kwargs) -> None:
     if created and not instance.proccessed:
         with open(instance.file.path, mode='r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-        collect_staatement_transactions.delay(reader)
+            reader = list(csv.DictReader(csvfile))
+        dataset = TransactionSerializer(
+            many=True, source_from=SourceFrom.CSV
+        ).load(reader)
+        save_bank_transactions.delay(dataset, True)
         instance.proccessed = True
         instance.save()
-        
 
 
 @receiver(post_delete, sender=StatementFile)

@@ -17,7 +17,9 @@ def send_message(message: str) -> None:
 
 @bot.message_handler(content_types=['document'])
 def handle_csv_file(message: Message) -> None:
-    if (doc_type := message.document.mime_type) == 'text/comma-separated-values':
+    if (
+        doc_type := message.document.mime_type
+    ) == 'text/comma-separated-values':
         file_info = bot.get_file(message.document.file_id)
         downloaded_file = bot.download_file(file_info.file_path)
         file_content = ContentFile(downloaded_file)

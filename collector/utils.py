@@ -1,5 +1,6 @@
 from datetime import datetime
 from functools import lru_cache
+import xml.etree.ElementTree as ET
 import time
 
 
@@ -13,9 +14,10 @@ def to_datetime(unix_time: int) -> datetime:
 
 @lru_cache(maxsize=64)
 def get_currency_code_by_name(currency_name: str) -> int:
+    root = ET.parse('resources/currency-codes.xml').getroot()
     for ccy_ntry in root.findall('.//CcyNtry'):
         ccy = ccy_ntry.find('Ccy')
-        if ccy.text == currency_name:
+        if ccy is not None and ccy.text == currency_name:
             ccy_nbr = ccy_ntry.find('CcyNbr')
-            return ccy_nbr.text
+            return int(ccy_nbr.text)
     raise KeyError(f'Invalid currency name {currency_name}')
