@@ -3,6 +3,7 @@
 .vscode
 .mypy_cache
 .pytest_cache
+.handler-saves
 __pycache__/
 *.py[cod]
 .logs

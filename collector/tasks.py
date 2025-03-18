@@ -53,9 +53,10 @@ def save_bank_transactions(
     new_transactions_qty = 0
     for transaction_data in dataset:
         if from_csv:
+            amount = transaction_data['amount']
             filter_fields = {
                 'unix_time': transaction_data['unix_time'],
-                'amount': transaction_data['amount']
+                'amount__range': (amount - 1, amount + 1)
             }
         else:
             filter_fields = {'bank_id': transaction_data['bank_id']}
