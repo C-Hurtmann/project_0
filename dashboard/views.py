@@ -3,7 +3,7 @@ from datetime import date
 from django.shortcuts import render
 from plotly.offline import plot
 import plotly.graph_objects as go
-import pandas as pd 
+import pandas as pd
 
 from collector.models import Transaction
 
@@ -13,7 +13,8 @@ def home(request):
     plot_divs = []
     # Data transformation
     transactions = pd.DataFrame(list(Transaction.objects.order_by('unix_time').values()))
-    transactions['date'] = pd.to_datetime(transactions['unix_time'], unit='s').dt.date
+    transactions['datetime'] = pd.to_datetime(transactions['unix_time'], unit='s')
+    transactions['date'] = transactions['datetime'].dt.date
 
     date_range = pd.date_range(transactions['date'].min(), date.today(), freq='D').date
     start_transaction = transactions[transactions['unix_time'] == transactions['unix_time'].min()]
@@ -81,13 +82,7 @@ def home(request):
         margin=dict(l=20, r=20, t=40, b=40)
     )
     scatter_fig = go.Figure(data=[scatter], layout=layout)
-    plot_divs.append(
-        plot(
-            scatter_fig,
-            output_type='div',
-
-        )
-    )
+    plot_divs.append(plot(scatter_fig, output_type='div'))
 
     # Create pie
     with open('resources/mcc.json') as f:
@@ -135,11 +130,47 @@ def home(request):
             )
         ],
         margin=dict(l=20, r=30, t=50, b=50)
-
     )
     pie_fig = go.Figure(data=[pie], layout=layout)
 
     plot_divs.append(plot(pie_fig, output_type='div'))
+
+    # create bar
+    transactions['month'] = transactions['datetime'].dt.month
+    transactions['year'] = transactions['datetime'].dt.year
+    summary_by_month = transactions.groupby(['year', 'month'])['amount'].agg(
+        income=lambda amount: amount[amount > 0].sum(),
+        expences=lambda amount: amount[amount < 0].sum(),
+    ).reset_index()
+    monthes = summary_by_month['month'].tolist()
+    incomes = (summary_by_month['income'] / 100).round(2).tolist()
+    expences = (summary_by_month['expences'].apply(abs) / 100).round(2).tolist()
+
+    income_bar = go.Bar(
+        x=monthes,
+        y=incomes,
+        name='Income',
+        hovertemplate="%{y:.2f} UAH",
+    )
+    expences_bar = go.Bar(
+        x=monthes,
+        y=expences,
+        name='Expences',
+        hovertemplate="%{y:.2f} UAH",
+    )
+    layout = go.Layout(
+        title='Summary by Month',
+        xaxis=dict(title='Month'),
+        yaxis=dict(title='Summary'),
+        barmode='group',
+        height=400,
+        width=775,
+        paper_bgcolor='rgba(255, 255, 255, 1)',
+        plot_bgcolor='rgba(255, 255, 255, 1)',
+        margin=dict(l=20, r=20, t=40, b=40)
+    )
+    bar_fig = go.Figure(data=[income_bar, expences_bar], layout=layout)
+    plot_divs.append(plot(bar_fig, output_type='div'))
 
     context = {'plot_divs': plot_divs}
     return render(request, 'dashboard/home.html', context)
