@@ -18,3 +18,4 @@ class RGBAColor:
 
 class Color(Enum):
     BLUE = RGBAColor(red=80, green=116, blue=220)
+    WHITE = RGBAColor(red=255, green=255, blue=255)

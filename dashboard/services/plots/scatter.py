@@ -46,8 +46,6 @@ class ScatterPlot(BasePlot):
                     gridcolor='rgba(234, 236, 244, 1)',
                     zeroline=False
                 ),
-                paper_bgcolor='rgba(255, 255, 255, 1)',
-                plot_bgcolor='rgba(255, 255, 255, 1)',
                 hovermode='x unified',
             )
         )

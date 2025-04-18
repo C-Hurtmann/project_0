@@ -14,6 +14,9 @@ class BarPlot(BasePlot):
                     y=y_values.values,
                     name=y_values.title,
                     hovertemplate="%{y:.2f} UAH",
+                    marker=dict(
+                        color=y_values.color
+                    ) if y_values.color else None
                 ) for y_values in y
             ]
         )

@@ -1,8 +1,6 @@
 import json
 from datetime import date
 from django.shortcuts import render
-from plotly.offline import plot
-import plotly.graph_objects as go
 import pandas as pd
 
 from collector.models import Transaction
@@ -90,13 +88,15 @@ def home(request):
     x = Axis(title='Month', values=summary_by_month['month'].tolist())
     income = Axis(
         title='Income',
-        values=(summary_by_month['income'] / 100).round(2).tolist()
+        values=(summary_by_month['income'] / 100).round(2).tolist(),
+        color='#6AB187'
     )
     expences = Axis(
         title='Expences',
         values=(
             summary_by_month['expences'].apply(abs) / 100
-        ).round(2).tolist()
+        ).round(2).tolist(),
+        color='#D32D41'
     )
     bar = BarPlot(f'Summary by Month {x.title}', x, income, expences)
 
