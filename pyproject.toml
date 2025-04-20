@@ -34,6 +34,11 @@ dash-renderer = "^1.9.1"
 pandas = "^2.2.3"
 numpy = "^2.2.3"
 python-telegram-bot = "^21.11.1"
+django-tables2 = "^2.7.5"
+django-htmx = "^1.23.0"
+htmx = "^0.0.0"
+django-filter = "^25.1"
+django-crispy-forms = "^2.4"
 
 
 [build-system]

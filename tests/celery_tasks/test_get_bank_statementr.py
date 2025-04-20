@@ -5,7 +5,7 @@ from unittest.mock import patch
 from dataclasses import asdict
 from datetime import datetime
 from django.conf import settings
-from collector.tasks import get_bank_statement
+from transactions.collector.tasks import get_bank_statement
 from .utils import BankTransaction, random_timestamp
 
 

@@ -6,9 +6,9 @@ from celery import shared_task, chain
 from celery.utils.log import get_task_logger
 from django.conf import settings
 
-from .models import Transaction
+from ..models import Transaction
 from .serializers import TransactionSerializer, SourceFrom
-from .utils import to_unix, to_datetime
+from ..utils import to_unix, to_datetime
 from .bot import send_message
 
 

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Transaction(models.Model):
     bank_id = models.CharField(max_length=255, unique=True)
@@ -10,9 +11,10 @@ class Transaction(models.Model):
     currency_code = models.IntegerField()
     commission_rate = models.IntegerField()
     balance = models.IntegerField()
-    
+
     class Meta:
         db_table = 'transactions'
+        ordering = ['id']
 
 
 class StatementFile(models.Model):

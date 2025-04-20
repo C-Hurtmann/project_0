@@ -4,7 +4,7 @@ from telebot.types import Message
 from django.conf import settings
 from django.core.files.base import ContentFile
 
-from .models import StatementFile
+from ..models import StatementFile
 
 
 bot = TeleBot(settings.TELEGRAM_BOT_TOKEN)

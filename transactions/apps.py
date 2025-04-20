@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class CollectorConfig(AppConfig):
+class TransactionsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'collector'
+    name = 'transactions'
 
     def ready(self):
-        import collector.signals
+        import transactions.collector.signals

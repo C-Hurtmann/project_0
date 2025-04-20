@@ -9,10 +9,9 @@ from django.db.models.signals import post_delete, post_save
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 from typing import Any
 
-from collector.serializers import SourceFrom, TransactionSerializer
-
 from .tasks import collect_transactions, save_bank_transactions
-from .models import StatementFile
+from .serializers import SourceFrom, TransactionSerializer
+from ..models import StatementFile
 
 
 logger = get_task_logger('collector.signals')

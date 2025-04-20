@@ -3,7 +3,7 @@ from datetime import date
 from django.shortcuts import render
 import pandas as pd
 
-from collector.models import Transaction
+from transactions.models import Transaction
 from .services.plots import ScatterPlot, PiePlot, Axis, BarPlot
 
 

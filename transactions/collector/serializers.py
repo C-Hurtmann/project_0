@@ -5,7 +5,7 @@ from typing import Any
 from enum import Enum
 from marshmallow import Schema, fields as f, EXCLUDE, pre_load
 
-from .utils import get_currency_code_by_name
+from ..utils import get_currency_code_by_name
 
 
 class SourceFrom(Enum):

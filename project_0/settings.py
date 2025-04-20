@@ -43,9 +43,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_celery_beat',
     'django_plotly_dash',
+    'django_htmx',
+    'django_tables2',
+    'crispy_forms',
     'channels',
     'channels_redis',
-    'collector',
+    'transactions',
     'dashboard'
 ]
 
@@ -57,7 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_plotly_dash.middleware.BaseMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
+    # 'django_plotly_dash.middleware.BaseMiddleware',
 ]
 
 ROOT_URLCONF = 'project_0.urls'
@@ -139,6 +143,17 @@ STATICFILES_FINDERS = [
     'django_plotly_dash.finders.DashAssetFinder',
     'django_plotly_dash.finders.DashComponentFinder',
 ]
+STATICFILES_LOCATION = 'static'
+
+STATIC_URL = 'static/'
+
+STATIC_ROOT = 'static'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'project_0/static')
+]
+
+# Plotly components
 PLOTLY_COMPONENTS = [
     'dash_core_components',
     'dash_html_components',
@@ -146,12 +161,6 @@ PLOTLY_COMPONENTS = [
     'dpd_components',
     # 'dash_table',
     # 'dash_bootstrap_components',
-]
-STATICFILES_LOCATION = 'static'
-STATIC_URL = 'static/'
-STATIC_ROOT = 'static'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'project_0/static')
 ]
 
 # Default primary key field type
@@ -161,11 +170,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Celery settings
 CELERY_BROKER_URL = env('CELERY_BROKER')
+
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
+
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # Other
 MONO_API_USER_TOKEN = env('MONO_API_USER_TOKEN')
+
 TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN')
 
-METADATA_DIR = BASE_DIR / '.meta/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
