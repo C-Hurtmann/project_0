@@ -8,6 +8,10 @@ from .services.plots import ScatterPlot, PiePlot, Axis, BarPlot
 
 
 # Create your views here.
+def test(request):
+    return render(request, 'test/index.html')
+
+
 def home(request):
     plot_divs = []
     # Data preparing for scatter

@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views as v
-from .dash_apps.finished_apps import test
+
 
 urlpatterns = [
-    path('', v.home, name='home'),
+    path('', v.test, name='test'),
+    path('prod/', v.home, name='home'),
 ]

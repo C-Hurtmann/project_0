@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_htmx',
     'django_tables2',
     'crispy_forms',
+    'crispy_bootstrap5',
     'channels',
     'channels_redis',
     'transactions',
@@ -121,7 +122,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 ASGI_APPLICATION = 'project_0.routing.application'
 
@@ -180,4 +181,6 @@ MONO_API_USER_TOKEN = env('MONO_API_USER_TOKEN')
 
 TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN')
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

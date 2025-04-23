@@ -713,6 +713,25 @@ files = [
 ]
 
 [[package]]
+name = "crispy-bootstrap5"
+version = "2025.4"
+description = "Bootstrap5 template pack for django-crispy-forms"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "crispy_bootstrap5-2025.4-py3-none-any.whl", hash = "sha256:51efa19c7d40e339774a6fe23407e83b95b7634cad6de70fd1f1093131bea1d9"},
+    {file = "crispy_bootstrap5-2025.4.tar.gz", hash = "sha256:d675ea7e245048905077dfe16bf1fa1ee16842f52fe88164ccc8a5e2d11119b3"},
+]
+
+[package.dependencies]
+django = ">=4.2"
+django-crispy-forms = ">=2.3"
+
+[package.extras]
+test = ["pytest", "pytest-django"]
+
+[[package]]
 name = "cron-descriptor"
 version = "1.4.5"
 description = "A Python library that converts cron expressions into human readable strings."
@@ -3815,4 +3834,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "52f72bfdd2d65adff5d3a0feb9db1c361f1c9541a90bab17dcf97d10e33f38c1"
+content-hash = "63492e399cb92ec9423652ada88d94ac3438f30592aaab27069a8aea682798be"

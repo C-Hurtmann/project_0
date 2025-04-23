@@ -18,7 +18,7 @@ class Axis:
 class BasePlot(ABC):
     data: list
     layout: dict
-    width: int = 775
+    width: int = 800
     height: int = 400
 
     def __init__(self, title: str) -> None:
