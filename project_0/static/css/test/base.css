@@ -1,4 +1,31 @@
+@import 'base.css';
+@import '_navbar.css';
+@import '_sidebar.css';
+@import '_footer.css';
+@import 'dashboard.css';
+
+
 .body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.full-height {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
-    overflow-x: hidden;
+}
+
+.main-content {
+    padding-top: 56px;
+    margin-top: 20px;
+    flex: 1;
+    background-color: #f8f9fa;
+}
+
+.content-wrapper {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
 }
