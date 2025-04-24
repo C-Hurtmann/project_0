@@ -1,7 +1,5 @@
-@import 'base.css';
 @import '_navbar.css';
 @import '_sidebar.css';
-@import '_footer.css';
 @import 'dashboard.css';
 
 
@@ -11,15 +9,8 @@
     font-family: Arial, sans-serif;
 }
 
-.full-height {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .main-content {
     padding-top: 56px;
-    margin-top: 20px;
     flex: 1;
     background-color: #f8f9fa;
 }

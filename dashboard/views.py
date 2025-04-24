@@ -8,13 +8,8 @@ from .services.plots import ScatterPlot, PiePlot, Axis, BarPlot
 
 
 # Create your views here.
-def test(request):
-    return render(request, 'test/index.html')
-
-
-def home(request):
-    plot_divs = []
-    # Data preparing for scatter
+def dashboard(request):
+    plots = []
     transactions = pd.DataFrame(
         list(Transaction.objects.order_by('unix_time').values())
     )
@@ -51,9 +46,8 @@ def home(request):
     y = Axis(title='Balance (UAH)', values=result_by_date['balance'].tolist())
 
     scatter = ScatterPlot(title='Balance per day', x=x, y=y)
-    plot_divs.append(scatter.html)
+    plots.append(scatter.to_dict())
 
-    # Data preparing for pie
     with open('resources/mcc.json') as f:
         mcc_description = json.load(f)
 
@@ -79,7 +73,7 @@ def home(request):
         values=values
     )
 
-    plot_divs.append(pie.html)
+    plots.append(pie.to_dict())
 
     # create bar
     transactions['month'] = transactions['datetime'].dt.month
@@ -104,7 +98,6 @@ def home(request):
     )
     bar = BarPlot(f'Summary by Month {x.title}', x, income, expences)
 
-    plot_divs.append(bar.html)
-
-    context = {'plot_divs': plot_divs}
-    return render(request, 'dashboard/home.html', context)
+    plots.append(bar.to_dict())
+    context = {'plots': plots}
+    return render(request, 'dashboard/dashboard.html', context)

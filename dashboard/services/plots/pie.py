@@ -4,6 +4,7 @@ from .base import BasePlot, Axis
 
 
 class PiePlot(BasePlot):
+    class_name: str = 'card-square'
     width: int = 375
 
     def __init__(self, title: str, categories: Axis, values: Axis) -> None:

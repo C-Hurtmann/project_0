@@ -10,18 +10,19 @@
     overflow: visible;
 }
 
-.square, .rectangle {
+.card-square, .card-rectangle {
     background-color: white;
     border: 1px solid #dee2e6;
     border-radius: 8px;
+    overflow: hidden;
     grid-row: span 1;
 }
 
-.square {
+.card-square {
     grid-column: span 1;
 }
 
-.rectangle {
+.card-rectangle {
     grid-column: span 2;
 }
 
@@ -36,7 +37,27 @@
         grid-template-columns: 400px;
     }
     
-    .rectangle {
+    .card-rectangle {
         grid-column: auto;
     }
+}
+
+.card-body {
+    width: 100%;
+    height: 100%;
+}
+
+.card-body .js-plotly-plot {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.card-body .js-plotly-plot .plot-container .main-svg {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.card-body .plotly {
+    width: 100% !important;
+    height: 100% !important;
 }
