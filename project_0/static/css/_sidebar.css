@@ -15,7 +15,7 @@
     margin-bottom: 20px;
   }
   
-  .dashboard-link, .menu-item {
+  .menu-item {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -26,12 +26,12 @@
     transition: all 0.2s;
   }
   
-  .dashboard-link.active, .menu-item:hover {
+  .menu-item.active, .menu-item:hover {
     background-color: #03142e;
     color: #fff;
   }
   
-  .dashboard-link i, .menu-item i {
+  .menu-item i {
     margin-right: 10px;
     font-size: 1rem;
     width: 20px;

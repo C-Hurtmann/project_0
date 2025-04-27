@@ -1,13 +1,16 @@
+{% load navigation_tags %}
+
 <div class="col-md-3 col-lg-2 d-md-block sidebar">
     <div class="sidebar-header">
-      <a href="{% url 'dashboard' %}" class="dashboard-link active">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Dashboard</span>
-      </a>
+
     </div>
     
     <div class="sidebar-menu">
-      <a href="{% url 'transaction_list' %}" class="menu-item">
+      <a href="{% url 'dashboard' %}" class="menu-item {% is_active 'dashboard' %}">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="{% url 'transaction_list' %}" class="menu-item {% is_active 'transaction_list' %}">
         <i class="fa-solid fa-piggy-bank"></i>
         <span>Transactions</span>
       </a>
