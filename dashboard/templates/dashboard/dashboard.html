@@ -2,7 +2,7 @@
 
 {% block content %}
 {% for plot in plots %}
-<div class="{{ plot.class_name }}">
+<div class="card {{ plot.class_name }}">
     <div class="card-body">
         {{ plot.html|safe }}
     </div>

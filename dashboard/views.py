@@ -1,9 +1,10 @@
-import json
 from datetime import date
 from django.shortcuts import render
 import pandas as pd
 
 from transactions.models import Transaction
+from transactions.utils import mcc_to_category
+
 from .services.plots import ScatterPlot, PiePlot, Axis, BarPlot
 
 
@@ -48,18 +49,14 @@ def dashboard(request):
     scatter = ScatterPlot(title='Balance per day', x=x, y=y)
     plots.append(scatter.to_dict())
 
-    with open('resources/mcc.json') as f:
-        mcc_description = json.load(f)
-
     expenses = transactions[transactions['amount'] < 0]
     expenses_by_mcc = expenses.groupby('mcc')['amount'].sum().reset_index()
-    expenses_by_mcc['mcc_description'] = expenses_by_mcc['mcc'].apply(str).map(
-        mcc_description
-    ).fillna('Unknown')
-
+    expenses_by_mcc['category'] = expenses_by_mcc['mcc'].apply(
+        lambda mcc: mcc_to_category(mcc)
+    )
     # Create pie
     categories = Axis(
-        title='MCC', values=expenses_by_mcc['mcc_description'].tolist()
+        title='MCC', values=expenses_by_mcc['category'].tolist()
     )
     values = Axis(
         title='Expences',
@@ -96,7 +93,7 @@ def dashboard(request):
         ).round(2).tolist(),
         color='#D32D41'
     )
-    bar = BarPlot(f'Summary by Month {x.title}', x, income, expences)
+    bar = BarPlot(f'Summary by {x.title.lower()}', x, income, expences)
 
     plots.append(bar.to_dict())
     context = {'plots': plots}

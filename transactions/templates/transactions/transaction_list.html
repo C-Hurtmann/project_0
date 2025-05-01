@@ -4,8 +4,8 @@
 {% block title %}Transactions{% endblock %}
 
 {% block content %}
-    <div class="container mt-4">
-        <div id="transaction-table"
+    <div class="card card-full">
+        <div class="card-body" id="transaction-table"
              hx-get="{% url 'transaction_list' %}"
              hx-trigger="load"
              hx-target="#transaction-table"

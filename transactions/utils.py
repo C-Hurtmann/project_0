@@ -1,7 +1,10 @@
+import time
+import json
+
 from datetime import datetime
 from functools import lru_cache
+
 import xml.etree.ElementTree as ET
-import time
 
 
 def to_unix(datetime_: datetime) -> int:
@@ -21,3 +24,9 @@ def get_currency_code_by_name(currency_name: str) -> int:
             ccy_nbr = ccy_ntry.find('CcyNbr')
             return int(ccy_nbr.text)
     raise KeyError(f'Invalid currency name {currency_name}')
+
+
+def mcc_to_category(mcc_code: int) -> str:
+    with open('resources/mcc.json') as f:
+        category = json.load(f)
+    return category.get(str(mcc_code), 'Unknown')

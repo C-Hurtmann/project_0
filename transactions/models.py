@@ -14,7 +14,7 @@ class Transaction(models.Model):
 
     class Meta:
         db_table = 'transactions'
-        ordering = ['id']
+        ordering = ['-unix_time']
 
 
 class StatementFile(models.Model):
