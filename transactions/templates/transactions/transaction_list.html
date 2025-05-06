@@ -4,14 +4,36 @@
 {% block title %}Transactions{% endblock %}
 
 {% block content %}
-    <div class="card card-full">
-        <div class="card-body" id="transaction-table"
-             hx-get="{% url 'transaction_list' %}"
-             hx-trigger="load"
-             hx-target="#transaction-table"
-             hx-swap="outerHTML">
-            {% render_table table %}
-        </div>
+<div class="card card-full">
+    <div class="card-header">
+        <h3 class="mb-3">Transactions</h3>
+        <form method="get" class="form">
+            <div class="row align-items-end">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <label for="{{ filter.form.start_date.id_for_label }}">{{ filter.form.start_date.label }}</label>
+                            {{ filter.form.start_date }}
+                        </div>
+                        <div class="ms-3">
+                            <label for="{{ filter.form.end_date.id_for_label }}">{{ filter.form.end_date.label }}</label>
+                            {{ filter.form.end_date }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <button type="submit" class="btn btn-primary">Apply Filter</button>
+                    <a href="{% url 'transaction_list' %}" class="btn btn-secondary ms-2">Reset</a>
+                </div>
+            </div>
+        </form>
     </div>
-
+    <div class="card-body" id="transaction-table"
+            hx-get="{% url 'transaction_list' %}"
+            hx-trigger="load"
+            hx-target="#transaction-table"
+            hx-swap="outerHTML">
+        {% render_table table %}
+    </div>
+</div>
 {% endblock %}

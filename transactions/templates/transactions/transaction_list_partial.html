@@ -1,0 +1,7 @@
+<div class="card-body" id="transaction-table">
+    {% if filter.qs %}
+        {% render_table table %}
+    {% else %}
+        <div class="alert alert-info">No transactions found for the selected date range.</div>
+    {% endif %}
+</div>

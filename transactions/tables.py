@@ -13,12 +13,19 @@ class TransactionTable(tables.Table):
     date = tables.DateTimeColumn(accessor='unix_time', verbose_name='Date')
     category = tables.Column(accessor='mcc', verbose_name='Category')
     amount = tables.Column(verbose_name='Amount')
+    balance = tables.Column(verbose_name='Balance')
 
     class Meta:
         model = Transaction
         template_name = 'django_tables2/bootstrap5.html'
         attrs = {'class': 'table table-striped'}
         fields = ('id', 'date', 'category', 'amount')
+        per_page = 22
+
+    @staticmethod
+    def _to_hryvnas(value: int | str):
+        hryvnas = Decimal(value) / Decimal(100)
+        return hryvnas.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
 
     def render_date(self, value):
         dt = datetime.datetime.fromtimestamp(
@@ -30,5 +37,7 @@ class TransactionTable(tables.Table):
         return mcc_to_category(value)
 
     def render_amount(self, value):
-        hryvnas = Decimal(value) / Decimal(100)
-        return hryvnas.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        return self._to_hryvnas(value)
+
+    def render_balance(self, value):
+        return self._to_hryvnas(value)
