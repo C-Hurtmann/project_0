@@ -1,6 +1,7 @@
 @import '_navbar.css';
 @import '_sidebar.css';
 @import 'dashboard.css';
+@import 'transaction_list.css';
 
 
 .body {

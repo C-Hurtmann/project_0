@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
 {% for plot in plots %}
-<div class="card {{ plot.class_name }}">
+<div class="card {{ plot.class_name }} shadow-sm">
     <div class="card-body">
         {{ plot.html|safe }}
     </div>

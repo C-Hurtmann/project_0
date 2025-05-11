@@ -20,7 +20,7 @@ class TransactionTable(tables.Table):
         template_name = 'django_tables2/bootstrap5.html'
         attrs = {'class': 'table table-striped'}
         fields = ('id', 'date', 'category', 'amount')
-        per_page = 22
+        per_page = 18
 
     @staticmethod
     def _to_hryvnas(value: int | str):
