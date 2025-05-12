@@ -64,6 +64,15 @@ label {
     font-size: 0.9rem;
 }
 
+.minus {
+    color: #c00 !important;
+    font-weight: 500;
+}
+.plus {
+    color: green !important;
+    font-weight: 500;
+}
+
 .table tbody tr:last-child td {
     border-bottom: none;
 }

@@ -12,7 +12,12 @@ class TransactionTable(tables.Table):
     id = tables.Column(accessor='bank_id', visible=False)
     date = tables.DateTimeColumn(accessor='unix_time', verbose_name='Date')
     category = tables.Column(accessor='mcc', verbose_name='Category')
-    amount = tables.Column(verbose_name='Amount')
+    amount = tables.Column(
+        verbose_name='Amount',
+        attrs={
+            'td': {'class': lambda value: 'minus' if value < 0 else 'plus'}
+        }
+    )
     balance = tables.Column(verbose_name='Balance')
 
     class Meta:
@@ -21,6 +26,9 @@ class TransactionTable(tables.Table):
         attrs = {'class': 'table table-striped'}
         fields = ('id', 'date', 'category', 'amount')
         per_page = 18
+        row_attrs = {
+            'class': lambda record: 'row-plus' if record.amount < 0 else 'row-minus'
+        }
 
     @staticmethod
     def _to_hryvnas(value: int | str):
