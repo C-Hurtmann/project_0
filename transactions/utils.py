@@ -27,6 +27,10 @@ def get_currency_code_by_name(currency_name: str) -> int:
 
 
 def mcc_to_category(mcc_code: int) -> str:
-    with open('resources/mcc.json') as f:
-        category = json.load(f)
-    return category.get(str(mcc_code), 'Unknown')
+    with open('resources/custom_mcc.json') as f:
+        mcc_list = json.load(f)
+    if not (mcc_data := mcc_list.get(str(mcc_code))):
+        with open('resources/mcc.json') as f:
+            mcc_list = json.load(f)
+            return mcc_list.get(str(mcc_code), 'Unknown')
+    return mcc_data['group']

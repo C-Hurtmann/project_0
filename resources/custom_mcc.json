@@ -1,0 +1,1014 @@
+{
+    "7623": {
+      "name": "Air Conditioning and Refrigeration Repair",
+      "group": "home"
+    },
+    "8931": {
+      "name": "Accounting and Bookkeeping Services",
+      "group": "professional"
+    },
+    "7311": {
+      "name": "Advertising Services",
+      "group": "professional"
+    },
+    "0763": {
+      "name": "Agricultural Cooperative",
+      "group": "professional"
+    },
+    "4511": {
+      "name": "Airlines and Air Carriers",
+      "group": "transportation"
+    },
+    "4582": {
+      "name": "Airports and Flying Fields",
+      "group": "transportation"
+    },
+    "4119": {
+      "name": "Ambulance Services",
+      "group": "healthcare"
+    },
+    "7996": {
+      "name": "Amusement Parks and Carnivals",
+      "group": "entertainment"
+    },
+    "5937": {
+      "name": "Antique Reproductions",
+      "group": "retail"
+    },
+    "5932": {
+      "name": "Antique Shops",
+      "group": "retail"
+    },
+    "7998": {
+      "name": "Aquariums",
+      "group": "entertainment"
+    },
+    "8911": {
+      "name": "Architectural and Surveying Services",
+      "group": "professional"
+    },
+    "5971": {
+      "name": "Art Dealers and Galleries",
+      "group": "retail"
+    },
+    "5970": {
+      "name": "Artists Supply and Craft Shops",
+      "group": "retail"
+    },
+    "7531": {
+      "name": "Auto Body Repair Shops",
+      "group": "automotive"
+    },
+    "7535": {
+      "name": "Auto Paint Shops",
+      "group": "automotive"
+    },
+    "7538": {
+      "name": "Auto Service Shops",
+      "group": "automotive"
+    },
+    "5531": {
+      "name": "Auto and Home Supply Stores",
+      "group": "automotive"
+    },
+    "6011": {
+      "name": "Automated Cash Disbursement",
+      "group": "financial"
+    },
+    "5542": {
+      "name": "Automated Fuel Dispensers",
+      "group": "automotive"
+    },
+    "8675": {
+      "name": "Automobile Associations",
+      "group": "automotive"
+    },
+    "5533": {
+      "name": "Automotive Parts and Accessories Stores",
+      "group": "automotive"
+    },
+    "5532": {
+      "name": "Automotive Tire Stores",
+      "group": "automotive"
+    },
+    "9223": {
+      "name": "Bail and Bond Payments",
+      "group": "government"
+    },
+    "5462": {
+      "name": "Bakeries",
+      "group": "food"
+    },
+    "7929": {
+      "name": "Bands and Orchestras",
+      "group": "entertainment"
+    },
+    "7230": {
+      "name": "Barber and Beauty Shops",
+      "group": "services"
+    },
+    "7995": {
+      "name": "Betting and Casino Gambling",
+      "group": "entertainment"
+    },
+    "5940": {
+      "name": "Bicycle Shops",
+      "group": "retail"
+    },
+    "7932": {
+      "name": "Billiard and Pool Establishments",
+      "group": "entertainment"
+    },
+    "5551": {
+      "name": "Boat Dealers",
+      "group": "retail"
+    },
+    "4457": {
+      "name": "Boat Rentals and Leases",
+      "group": "entertainment"
+    },
+    "5942": {
+      "name": "Book Stores",
+      "group": "retail"
+    },
+    "5192": {
+      "name": "Books, Periodicals, and Newspapers",
+      "group": "retail"
+    },
+    "7933": {
+      "name": "Bowling Alleys",
+      "group": "entertainment"
+    },
+    "4131": {
+      "name": "Bus Lines",
+      "group": "transportation"
+    },
+    "8244": {
+      "name": "Business and Secretarial Schools",
+      "group": "education"
+    },
+    "7278": {
+      "name": "Buying and Shopping Services",
+      "group": "services"
+    },
+    "4899": {
+      "name": "Cable, Satellite, and Pay Television and Radio",
+      "group": "utilities"
+    },
+    "5946": {
+      "name": "Camera and Photographic Supply Stores",
+      "group": "retail"
+    },
+    "5441": {
+      "name": "Candy, Nut, and Confectionery Stores",
+      "group": "food"
+    },
+    "7512": {
+      "name": "Car Rental Agencies",
+      "group": "transportation"
+    },
+    "7542": {
+      "name": "Car Washes",
+      "group": "automotive"
+    },
+    "5511": {
+      "name": "Car and Truck Dealers (New & Used)",
+      "group": "automotive"
+    },
+    "5521": {
+      "name": "Car and Truck Dealers (Used Only)",
+      "group": "automotive"
+    },
+    "1750": {
+      "name": "Carpentry Services",
+      "group": "home"
+    },
+    "7217": {
+      "name": "Carpet and Upholstery Cleaning",
+      "group": "home"
+    },
+    "5811": {
+      "name": "Caterers",
+      "group": "food"
+    },
+    "8398": {
+      "name": "Charitable and Social Service Organizations",
+      "group": "services"
+    },
+    "5169": {
+      "name": "Chemicals and Allied Products",
+      "group": "retail"
+    },
+    "8351": {
+      "name": "Child Care Services",
+      "group": "services"
+    },
+    "5641": {
+      "name": "Children's and Infants' Wear Stores",
+      "group": "retail"
+    },
+    "8049": {
+      "name": "Chiropodists and Podiatrists",
+      "group": "healthcare"
+    },
+    "8041": {
+      "name": "Chiropractors",
+      "group": "healthcare"
+    },
+    "5993": {
+      "name": "Cigar Stores and Stands",
+      "group": "retail"
+    },
+    "8641": {
+      "name": "Civic, Social, Fraternal Associations",
+      "group": "services"
+    },
+    "7349": {
+      "name": "Cleaning and Maintenance Services",
+      "group": "services"
+    },
+    "7296": {
+      "name": "Clothing Rental",
+      "group": "services"
+    },
+    "8220": {
+      "name": "Colleges and Universities",
+      "group": "education"
+    },
+    "5046": {
+      "name": "Commercial Equipment",
+      "group": "retail"
+    },
+    "5139": {
+      "name": "Commercial Footwear",
+      "group": "retail"
+    },
+    "7333": {
+      "name": "Commercial Photography, Art and Graphics",
+      "group": "professional"
+    },
+    "4111": {
+      "name": "Commuter Transport and Ferries",
+      "group": "transportation"
+    },
+    "4816": {
+      "name": "Computer Network Services",
+      "group": "technology"
+    },
+    "7372": {
+      "name": "Computer Programming",
+      "group": "technology"
+    },
+    "7379": {
+      "name": "Computer Repair",
+      "group": "technology"
+    },
+    "5734": {
+      "name": "Computer Software Stores",
+      "group": "technology"
+    },
+    "5045": {
+      "name": "Computers, Peripherals, and Software",
+      "group": "technology"
+    },
+    "1771": {
+      "name": "Concrete Work Services",
+      "group": "home"
+    },
+    "5039": {
+      "name": "Construction Materials",
+      "group": "home"
+    },
+    "7392": {
+      "name": "Consulting and Public Relations",
+      "group": "professional"
+    },
+    "8241": {
+      "name": "Correspondence Schools",
+      "group": "education"
+    },
+    "5977": {
+      "name": "Cosmetic Stores",
+      "group": "retail"
+    },
+    "7277": {
+      "name": "Counseling Services",
+      "group": "healthcare"
+    },
+    "7997": {
+      "name": "Country Clubs",
+      "group": "entertainment"
+    },
+    "4215": {
+      "name": "Courier Services",
+      "group": "services"
+    },
+    "9211": {
+      "name": "Court Costs and Alimony",
+      "group": "government"
+    },
+    "7321": {
+      "name": "Credit Reporting Agencies",
+      "group": "financial"
+    },
+    "4411": {
+      "name": "Cruise Lines",
+      "group": "transportation"
+    },
+    "5451": {
+      "name": "Dairy Products Stores",
+      "group": "food"
+    },
+    "7911": {
+      "name": "Dance Halls, Studios, and Schools",
+      "group": "entertainment"
+    },
+    "7273": {
+      "name": "Dating and Escort Services",
+      "group": "services"
+    },
+    "8021": {
+      "name": "Dentists and Orthodontists",
+      "group": "healthcare"
+    },
+    "5311": {
+      "name": "Department Stores",
+      "group": "retail"
+    },
+    "7393": {
+      "name": "Detective Agencies",
+      "group": "professional"
+    },
+    "5815": {
+      "name": "Digital Goods - Books, Movies, Music",
+      "group": "retail"
+    },
+    "5817": {
+      "name": "Digital Goods - Applications",
+      "group": "technology"
+    },
+    "5816": {
+      "name": "Digital Goods - Games",
+      "group": "technology"
+    },
+    "5818": {
+      "name": "Digital Goods - Large Digital Merchant",
+      "group": "technology"
+    },
+    "5964": {
+      "name": "Direct Marketing - Catalog Merchant",
+      "group": "retail"
+    },
+    "5965": {
+      "name": "Direct Marketing - Catalog and Retail",
+      "group": "retail"
+    },
+    "5967": {
+      "name": "Direct Marketing - Inbound Telemarketing",
+      "group": "retail"
+    },
+    "5960": {
+      "name": "Direct Marketing - Insurance Services",
+      "group": "financial"
+    },
+    "5969": {
+      "name": "Direct Marketing - Other",
+      "group": "retail"
+    },
+    "5966": {
+      "name": "Direct Marketing - Outbound Telemarketing",
+      "group": "retail"
+    },
+    "5968": {
+      "name": "Direct Marketing - Subscription",
+      "group": "retail"
+    },
+    "5962": {
+      "name": "Direct Marketing - Travel",
+      "group": "transportation"
+    },
+    "5310": {
+      "name": "Discount Stores",
+      "group": "retail"
+    },
+    "8011": {
+      "name": "Doctors and Physicians",
+      "group": "healthcare"
+    },
+    "5963": {
+      "name": "Door-To-Door Sales",
+      "group": "retail"
+    },
+    "5714": {
+      "name": "Drapery, Window Covering, and Upholstery Stores",
+      "group": "home"
+    },
+    "5813": {
+      "name": "Drinking Places and Bars",
+      "group": "food"
+    },
+    "5912": {
+      "name": "Drug Stores and Pharmacies",
+      "group": "healthcare"
+    },
+    "5122": {
+      "name": "Drugs and Druggist Sundries",
+      "group": "healthcare"
+    },
+    "7216": {
+      "name": "Dry Cleaners",
+      "group": "services"
+    },
+    "5099": {
+      "name": "Durable Goods",
+      "group": "retail"
+    },
+    "5309": {
+      "name": "Duty Free Stores",
+      "group": "retail"
+    },
+    "5812": {
+      "name": "Eating Places and Restaurants",
+      "group": "food"
+    },
+    "8299": {
+      "name": "Educational Services",
+      "group": "education"
+    },
+    "5997": {
+      "name": "Electric Razor Stores",
+      "group": "retail"
+    },
+    "5552": {
+      "name": "Electric Vehicle Charging",
+      "group": "automotive"
+    },
+    "5065": {
+      "name": "Electrical Parts and Equipment",
+      "group": "retail"
+    },
+    "1731": {
+      "name": "Electrical Services",
+      "group": "home"
+    },
+    "7622": {
+      "name": "Electronics Repair Shops",
+      "group": "technology"
+    },
+    "5732": {
+      "name": "Electronics Stores",
+      "group": "technology"
+    },
+    "8211": {
+      "name": "Elementary and Secondary Schools",
+      "group": "education"
+    },
+    "9702": {
+      "name": "Emergency Services",
+      "group": "government"
+    },
+    "7361": {
+      "name": "Employment and Temp Agencies",
+      "group": "professional"
+    },
+    "7394": {
+      "name": "Equipment Rental",
+      "group": "services"
+    },
+    "7342": {
+      "name": "Exterminating Services",
+      "group": "home"
+    },
+    "5651": {
+      "name": "Family Clothing Stores",
+      "group": "retail"
+    },
+    "5814": {
+      "name": "Fast Food Restaurants",
+      "group": "food"
+    },
+    "6012": {
+      "name": "Financial Institutions",
+      "group": "financial"
+    },
+    "9222": {
+      "name": "Government Fines",
+      "group": "government"
+    },
+    "5718": {
+      "name": "Fireplace and Accessories Stores",
+      "group": "home"
+    },
+    "5713": {
+      "name": "Floor Covering Stores",
+      "group": "home"
+    },
+    "5992": {
+      "name": "Florists",
+      "group": "retail"
+    },
+    "5193": {
+      "name": "Florists Supplies and Nursery Stock",
+      "group": "retail"
+    },
+    "5422": {
+      "name": "Freezer and Locker Meat Provisioners",
+      "group": "food"
+    },
+    "5983": {
+      "name": "Fuel Dealers (Non Automotive)",
+      "group": "home"
+    },
+    "7261": {
+      "name": "Funeral Services and Crematories",
+      "group": "services"
+    },
+    "7641": {
+      "name": "Furniture Repair and Refinishing",
+      "group": "home"
+    },
+    "5712": {
+      "name": "Furniture and Home Furnishing Stores",
+      "group": "home"
+    },
+    "5681": {
+      "name": "Furriers and Fur Shops",
+      "group": "retail"
+    },
+    "1520": {
+      "name": "General Services",
+      "group": "services"
+    },
+    "5947": {
+      "name": "Gift, Card, and Novelty Shops",
+      "group": "retail"
+    },
+    "5231": {
+      "name": "Glass, Paint, and Wallpaper Stores",
+      "group": "home"
+    },
+    "5950": {
+      "name": "Glassware and Crystal Stores",
+      "group": "retail"
+    },
+    "7992": {
+      "name": "Golf Courses - Public",
+      "group": "entertainment"
+    },
+    "7801": {
+      "name": "Online Casinos",
+      "group": "entertainment"
+    },
+    "9399": {
+      "name": "Government Services",
+      "group": "government"
+    },
+    "7802": {
+      "name": "Horse and Dog Racing",
+      "group": "entertainment"
+    },
+    "9406": {
+      "name": "Government Lotteries (Non-US)",
+      "group": "government"
+    },
+    "7800": {
+      "name": "Government Lotteries (US)",
+      "group": "government"
+    },
+    "5411": {
+      "name": "Grocery Stores and Supermarkets",
+      "group": "food"
+    },
+    "5251": {
+      "name": "Hardware Stores",
+      "group": "home"
+    },
+    "5072": {
+      "name": "Hardware, Equipment, and Supplies",
+      "group": "home"
+    },
+    "7298": {
+      "name": "Health and Beauty Spas",
+      "group": "services"
+    },
+    "5975": {
+      "name": "Hearing Aids Sales and Supplies",
+      "group": "healthcare"
+    },
+    "1711": {
+      "name": "Heating, Plumbing, and Air Conditioning",
+      "group": "home"
+    },
+    "5945": {
+      "name": "Hobby, Toy, and Game Shops",
+      "group": "retail"
+    },
+    "5200": {
+      "name": "Home Supply Warehouse Stores",
+      "group": "home"
+    },
+    "8062": {
+      "name": "Hospitals",
+      "group": "healthcare"
+    },
+    "7011": {
+      "name": "Hotels, Motels, and Resorts",
+      "group": "transportation"
+    },
+    "5722": {
+      "name": "Household Appliance Stores",
+      "group": "home"
+    },
+    "5085": {
+      "name": "Industrial Supplies",
+      "group": "retail"
+    },
+    "7375": {
+      "name": "Information Retrieval Services",
+      "group": "technology"
+    },
+    "6399": {
+      "name": "Insurance - Default",
+      "group": "financial"
+    },
+    "6300": {
+      "name": "Insurance Underwriting and Premiums",
+      "group": "financial"
+    },
+    "9950": {
+      "name": "Intra-Company Purchases",
+      "group": "professional"
+    },
+    "5944": {
+      "name": "Jewelry and Watch Stores",
+      "group": "retail"
+    },
+    "0780": {
+      "name": "Landscaping Services",
+      "group": "home"
+    },
+    "7211": {
+      "name": "Laundries",
+      "group": "services"
+    },
+    "7210": {
+      "name": "Laundry and Cleaning Services",
+      "group": "services"
+    },
+    "8111": {
+      "name": "Legal Services and Attorneys",
+      "group": "professional"
+    },
+    "5948": {
+      "name": "Luggage and Leather Goods Stores",
+      "group": "retail"
+    },
+    "5211": {
+      "name": "Lumber and Building Materials Stores",
+      "group": "home"
+    },
+    "6010": {
+      "name": "Manual Cash Disbursement",
+      "group": "financial"
+    },
+    "4468": {
+      "name": "Marinas, Service and Supplies",
+      "group": "transportation"
+    },
+    "5262": {
+      "name": "Marketplaces",
+      "group": "retail"
+    },
+    "1740": {
+      "name": "Masonry, Stonework, and Plaster",
+      "group": "home"
+    },
+    "7297": {
+      "name": "Massage Parlors",
+      "group": "services"
+    },
+    "8099": {
+      "name": "Medical Services",
+      "group": "healthcare"
+    },
+    "8071": {
+      "name": "Medical and Dental Labs",
+      "group": "healthcare"
+    },
+    "5047": {
+      "name": "Medical Equipment and Supplies",
+      "group": "healthcare"
+    },
+    "8699": {
+      "name": "Membership Organizations",
+      "group": "services"
+    },
+    "5611": {
+      "name": "Men's and Boys' Clothing Stores",
+      "group": "retail"
+    },
+    "5691": {
+      "name": "Men's and Women's Clothing Stores",
+      "group": "retail"
+    },
+    "5051": {
+      "name": "Metal Service Centers",
+      "group": "retail"
+    },
+    "5699": {
+      "name": "Miscellaneous Apparel and Accessory Shops",
+      "group": "retail"
+    },
+    "5599": {
+      "name": "Miscellaneous Auto Dealers",
+      "group": "automotive"
+    },
+    "7399": {
+      "name": "Miscellaneous Business Services",
+      "group": "professional"
+    },
+    "5499": {
+      "name": "Convenience Stores and Specialty Markets",
+      "group": "food"
+    },
+    "5399": {
+      "name": "Miscellaneous General Merchandise",
+      "group": "retail"
+    },
+    "7299": {
+      "name": "Miscellaneous General Services",
+      "group": "services"
+    },
+    "5719": {
+      "name": "Home Furnishing Specialty Stores",
+      "group": "home"
+    },
+    "2741": {
+      "name": "Publishing and Printing",
+      "group": "professional"
+    },
+    "7999": {
+      "name": "Miscellaneous Recreation Services",
+      "group": "entertainment"
+    },
+    "7699": {
+      "name": "Miscellaneous Repair Shops",
+      "group": "services"
+    },
+    "5999": {
+      "name": "Miscellaneous Specialty Retail",
+      "group": "retail"
+    },
+    "5271": {
+      "name": "Mobile Home Dealers",
+      "group": "home"
+    },
+    "7832": {
+      "name": "Movie Theaters",
+      "group": "entertainment"
+    },
+    "4214": {
+      "name": "Moving and Storage Companies",
+      "group": "transportation"
+    },
+    "5592": {
+      "name": "Motor Home Dealers",
+      "group": "automotive"
+    },
+    "5013": {
+      "name": "Motor Vehicle Supplies and Parts",
+      "group": "automotive"
+    },
+    "5571": {
+      "name": "Motorcycle Shops and Dealers",
+      "group": "automotive"
+    },
+    "5561": {
+      "name": "Motorcycle Dealers",
+      "group": "automotive"
+    },
+    "5733": {
+      "name": "Music Stores and Instruments",
+      "group": "retail"
+    },
+    "5994": {
+      "name": "News Dealers and Newsstands",
+      "group": "retail"
+    },
+    "6051": {
+      "name": "Non-Financial Institution Money Orders",
+      "group": "financial"
+    },
+    "6540": {
+      "name": "Stored Value Card Purchase",
+      "group": "financial"
+    },
+    "5199": {
+      "name": "Nondurable Goods",
+      "group": "retail"
+    },
+    "5261": {
+      "name": "Nurseries and Garden Supply Stores",
+      "group": "home"
+    },
+    "8050": {
+      "name": "Nursing and Personal Care",
+      "group": "healthcare"
+    },
+    "5021": {
+      "name": "Office and Commercial Furniture",
+      "group": "retail"
+    },
+    "8043": {
+      "name": "Opticians and Eyeglasses",
+      "group": "healthcare"
+    },
+    "8042": {
+      "name": "Optometrists and Ophthalmologists",
+      "group": "healthcare"
+    },
+    "5976": {
+      "name": "Orthopedic Goods and Prosthetic Devices",
+      "group": "healthcare"
+    },
+    "8031": {
+      "name": "Osteopaths",
+      "group": "healthcare"
+    },
+    "5921": {
+      "name": "Package Stores - Beer, Wine, and Liquor",
+      "group": "food"
+    },
+    "5198": {
+      "name": "Paints, Varnishes, and Supplies",
+      "group": "home"
+    },
+    "7523": {
+      "name": "Parking Lots and Garages",
+      "group": "transportation"
+    },
+    "4112": {
+      "name": "Passenger Railways",
+      "group": "transportation"
+    },
+    "5933": {
+      "name": "Pawn Shops",
+      "group": "retail"
+    },
+    "5995": {
+      "name": "Pet Shops and Supplies",
+      "group": "retail"
+    },
+    "5172": {
+      "name": "Petroleum and Petroleum Products",
+      "group": "retail"
+    },
+    "7395": {
+      "name": "Photo Developing",
+      "group": "services"
+    },
+    "7221": {
+      "name": "Photographic Studios",
+      "group": "services"
+    },
+    "5044": {
+      "name": "Photographic Equipment and Supplies",
+      "group": "retail"
+    },
+    "7829": {
+      "name": "Picture and Video Production",
+      "group": "professional"
+    },
+    "5131": {
+      "name": "Piece Goods and Notions",
+      "group": "retail"
+    },
+    "5074": {
+      "name": "Plumbing and Heating Equipment",
+      "group": "home"
+    },
+    "8651": {
+      "name": "Political Organizations",
+      "group": "services"
+    },
+    "9402": {
+      "name": "Postal Services - Government",
+      "group": "government"
+    },
+    "5094": {
+      "name": "Precious Stones, Metals, and Jewelry",
+      "group": "retail"
+    },
+    "8999": {
+      "name": "Professional Services",
+      "group": "professional"
+    },
+    "4225": {
+      "name": "Public Warehousing and Storage",
+      "group": "services"
+    },
+    "7338": {
+      "name": "Quick Copy and Reproduction Services",
+      "group": "services"
+    },
+    "4011": {
+      "name": "Railroads",
+      "group": "transportation"
+    },
+    "6513": {
+      "name": "Real Estate Agents and Rentals",
+      "group": "professional"
+    },
+    "5735": {
+      "name": "Record Stores",
+      "group": "retail"
+    },
+    "7519": {
+      "name": "Recreational Vehicle Rentals",
+      "group": "transportation"
+    },
+    "5973": {
+      "name": "Religious Goods Stores",
+      "group": "retail"
+    },
+    "8661": {
+      "name": "Religious Organizations",
+      "group": "services"
+    },
+    "1761": {
+      "name": "Roofing and Siding Services",
+      "group": "home"
+    },
+    "7339": {
+      "name": "Secretarial Support Services",
+      "group": "professional"
+    },
+    "6211": {
+      "name": "Security Brokers and Dealers",
+      "group": "financial"
+    },
+    "5541": {
+      "name": "Service Stations",
+      "group": "automotive"
+    },
+    "5949": {
+      "name": "Sewing and Fabric Stores",
+      "group": "retail"
+    },
+    "7251": {
+      "name": "Shoe Repair and Hat Cleaning",
+      "group": "services"
+    },
+    "5661": {
+      "name": "Shoe Stores",
+      "group": "retail"
+    },
+    "7629": {
+      "name": "Small Appliance Repair",
+      "group": "services"
+    },
+    "5598": {
+      "name": "Snowmobile Dealers",
+      "group": "automotive"
+    },
+    "1799": {
+      "name": "Special Trade Services",
+      "group": "professional"
+    },
+    "2842": {
+      "name": "Specialty Cleaning",
+      "group": "services"
+    },
+    "5941": {
+      "name": "Sporting Goods Stores",
+      "group": "retail"
+    },
+    "7032": {
+      "name": "Sporting and Recreation Camps",
+      "group": "entertainment"
+    },
+    "7941": {
+      "name": "Sports Clubs and Fields",
+      "group": "entertainment"
+    },
+    "5655": {
+      "name": "Sports and Riding Apparel Stores",
+      "group": "retail"
+    },
+    "5972": {
+      "name": "Stamp and Coin Stores",
+      "group": "retail"
+    },
+    "5111": {
+      "name": "Stationery and Office Supplies",
+      "group": "retail"
+    },
+    "5943": {
+      "name": "Stationery and School Supply Stores",
+      "group": "retail"
+    },
+    "5996": {
+      "name": "Swimming Pools Sales",
+      "group": "home"
+    }
+}

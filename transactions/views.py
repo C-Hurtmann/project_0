@@ -16,6 +16,7 @@ class TransactionListView(SingleTableMixin, FilterView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filterset
+        context['filter_applied'] = self.filterset.form.has_changed()
         return context
 
     def get_template_names(self):

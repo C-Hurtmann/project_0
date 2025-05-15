@@ -5,27 +5,35 @@
 {% block content %}
 <div class="card card-full">
     <div class="card-header">
-        <h3 class="mb-3">Transactions</h3>
-        <form method="get" class="form">
-            <div class="row align-items-end">
-                <div class="col-md-8">
-                    <div class="d-flex align-items-center">
-                        <div class="me-3">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <h3 class="mb-3">Transactions</h3>
+            </div>
+            <div class="col-md-9">
+                <form id="filter-form" method="get" class="form">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <div class="me-2">
                             <label for="{{ filter.form.start_date.id_for_label }}">{{ filter.form.start_date.label }}</label>
                             {{ filter.form.start_date }}
                         </div>
-                        <div class="ms-3">
+                        <div class="mx-2">
                             <label for="{{ filter.form.end_date.id_for_label }}">{{ filter.form.end_date.label }}</label>
                             {{ filter.form.end_date }}
                         </div>
+                        <div class="ms-1 me-4">
+                            <noscript>
+                                <button type="submit" class="btn btn-primary">Apply Filter</button>
+                            </noscript>
+                            <div class="d-inline-block position-relative btn-placeholder">
+                                {% if filter_applied %}
+                                    <a href="{% url 'transaction_list' %}" class="btn-close ms-2 position-absolute" aria-label="Reset filters"></a>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 mt-3">
-                    <button type="submit" class="btn btn-primary">Apply Filter</button>
-                    <a href="{% url 'transaction_list' %}" class="btn btn-secondary ms-2">Reset</a>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
     <div class="card-body" id="transaction-table"
             hx-get="{% url 'transaction_list' %}"
@@ -35,4 +43,19 @@
         {% render_table table %}
     </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('filter-form');
+    const inputs = form.querySelectorAll('input, select');
+
+    inputs.forEach(el => {
+      el.addEventListener('change', () => {
+        // Only submit if the field has a non-empty value
+        if (el.value.trim() !== '') {
+          form.submit();
+        }
+      });
+    });
+  });
+</script>
 {% endblock %}

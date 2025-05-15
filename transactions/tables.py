@@ -15,10 +15,15 @@ class TransactionTable(tables.Table):
     amount = tables.Column(
         verbose_name='Amount',
         attrs={
-            'td': {'class': lambda value: 'minus' if value < 0 else 'plus'}
+            'td': {'class': lambda value: 'sum-minus' if value < 0 else 'sum-plus'}
         }
     )
-    balance = tables.Column(verbose_name='Balance')
+    balance = tables.Column(
+        verbose_name='Balance',
+        attrs={
+            'td': {'class': 'sum'}
+        }
+    )
 
     class Meta:
         model = Transaction
