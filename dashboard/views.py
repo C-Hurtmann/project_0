@@ -48,9 +48,13 @@ def dashboard(request):
 
     scatter = ScatterPlot(title='Balance per day', x=x, y=y)
     plots.append(scatter.to_dict())
-
-    expenses = transactions[transactions['amount'] < 0]
-    expenses_by_mcc = expenses.groupby('mcc')['amount'].sum().reset_index()
+    expenses_by_month = transactions[
+        (transactions['amount'] < 0)
+        & (transactions['date'] >= date.today().replace(day=1))
+    ]
+    expenses_by_mcc = (
+        expenses_by_month.groupby('mcc')['amount'].sum().reset_index()
+    )
     expenses_by_mcc['category'] = expenses_by_mcc['mcc'].apply(
         lambda mcc: mcc_to_category(mcc)
     )
@@ -65,7 +69,7 @@ def dashboard(request):
         ).tolist()
     )
     pie = PiePlot(
-        title='Expences distribution',
+        title=f'Expences on {date.today().strftime('%B')}',
         categories=categories,
         values=values
     )
@@ -79,8 +83,11 @@ def dashboard(request):
         income=lambda amount: amount[amount > 0].sum(),
         expences=lambda amount: amount[amount < 0].sum(),
     ).reset_index()
-
-    x = Axis(title='Month', values=summary_by_month['month'].tolist())
+    summary_by_month['date'] = pd.to_datetime(
+        summary_by_month[['year', 'month']].assign(day=1)
+    )
+    print(summary_by_month.head())
+    x = Axis(title='Month', values=summary_by_month['date'].tolist())
     income = Axis(
         title='Income',
         values=(summary_by_month['income'] / 100).round(2).tolist(),

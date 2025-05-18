@@ -10,7 +10,7 @@ class PiePlot(BasePlot):
     def __init__(self, title: str, categories: Axis, values: Axis) -> None:
         super().__init__(title)
 
-        total = round(sum(values.values), 2)
+        total = '{:.2f}'.format(round(sum(values.values), 2))
         anotation_font_size = min(self.width, self.height) // 20
 
         self.data.append(

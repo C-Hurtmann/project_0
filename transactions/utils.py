@@ -33,4 +33,4 @@ def mcc_to_category(mcc_code: int) -> str:
         with open('resources/mcc.json') as f:
             mcc_list = json.load(f)
             return mcc_list.get(str(mcc_code), 'Unknown')
-    return mcc_data['group']
+    return mcc_data['name']

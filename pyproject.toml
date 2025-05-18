@@ -40,6 +40,7 @@ htmx = "^0.0.0"
 django-filter = "^25.1"
 django-crispy-forms = "^2.4"
 crispy-bootstrap5 = "^2025.4"
+django-extensions = "^4.1"
 
 
 [build-system]
