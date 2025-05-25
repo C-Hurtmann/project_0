@@ -12,24 +12,28 @@
             <div class="col-md-9">
                 <form id="filter-form" method="get" class="form">
                     <div class="d-flex align-items-center justify-content-end">
-                        <div class="me-2">
+                        <div class="me-4">
+                            <label for="{{ filter.form.transaction_type.id_for_label }}">{{ filter.form.transaction_type.label }}</label>
+                            {{ filter.form.transaction_type }}
+                        </div>
+                        <div class="me-1">
                             <label for="{{ filter.form.start_date.id_for_label }}">{{ filter.form.start_date.label }}</label>
                             {{ filter.form.start_date }}
                         </div>
-                        <div class="mx-2">
+                        <div class="mx-1">
                             <label for="{{ filter.form.end_date.id_for_label }}">{{ filter.form.end_date.label }}</label>
                             {{ filter.form.end_date }}
                         </div>
                         <div class="ms-1 me-4">
-                            <noscript>
-                                <button type="submit" class="btn btn-primary">Apply Filter</button>
-                            </noscript>
                             <div class="d-inline-block position-relative btn-placeholder">
                                 {% if filter_applied %}
                                     <a href="{% url 'transaction_list' %}" class="btn-close ms-2 position-absolute" aria-label="Reset filters"></a>
                                 {% endif %}
                             </div>
                         </div>
+                        <noscript>
+                            <button type="submit" class="btn btn-primary">Apply Filter</button>
+                        </noscript>
                     </div>
                 </form>
             </div>

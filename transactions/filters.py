@@ -7,6 +7,7 @@ from .models import Transaction
 
 
 class TransactionFilter(django_filters.FilterSet):
+    # date range
     start_date = django_filters.DateFilter(
         field_name='unix_time',
         lookup_expr='gte',
@@ -14,7 +15,6 @@ class TransactionFilter(django_filters.FilterSet):
         method='filter_start_date',
         widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'})
     )
-
     end_date = django_filters.DateFilter(
         field_name='unix_time',
         lookup_expr='lt',
@@ -22,10 +22,22 @@ class TransactionFilter(django_filters.FilterSet):
         method='filter_end_date',
         widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'})
     )
+    # amount type
+    transaction_type = django_filters.ChoiceFilter(
+        label='Type',
+        choices=(
+            ('expense', 'Expcences'),
+            ('income', 'Income'),
+        ),
+        empty_label='Select Transaction Type',
+        # initial='all',
+        method='filter_transaction_type',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
 
     class Meta:
         model = Transaction
-        fields = ['start_date', 'end_date']
+        fields = ['start_date', 'end_date', 'transaction_type']
 
     def filter_start_date(self, queryset, name, value):
         if value:
@@ -40,3 +52,12 @@ class TransactionFilter(django_filters.FilterSet):
             end_ts = int(end_datetime.timestamp())
             return queryset.filter(unix_time__lt=end_ts)
         return queryset
+
+    def filter_transaction_type(self, queryset, name, value):
+        match value:
+            case 'expense':
+                return queryset.filter(amount__lt=0)
+            case 'income':
+                return queryset.filter(amount__gt=0)
+            case _:
+                return queryset

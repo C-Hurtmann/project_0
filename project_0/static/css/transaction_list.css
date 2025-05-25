@@ -92,3 +92,21 @@ label {
 .sum-plus {
     color: rgb(12, 143, 12) !important;
 }
+/* 
+.range-slider-container {
+    width: 250px;
+    padding: 0 10px;
+}
+
+.range-slider input[type="range"] {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.range-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+} */
