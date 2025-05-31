@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% load render_table from django_tables2 %}
 {% block title %}Transactions{% endblock %}
 
@@ -12,23 +13,42 @@
             <div class="col-md-9">
                 <form id="filter-form" method="get" class="form">
                     <div class="d-flex align-items-center justify-content-end">
-                        <div class="me-4">
-                            <label for="{{ filter.form.transaction_type.id_for_label }}">{{ filter.form.transaction_type.label }}</label>
-                            {{ filter.form.transaction_type }}
+                        <!-- Type Filter -->
+                        <div class="filter-group me-1 position-relative">
+                            <div class="d-flex align-items-center">
+                                <div class="me-1">
+                                    <label for="{{ filter.form.transaction_type.id_for_label }}">{{ filter.form.transaction_type.label }}</label>
+                                    {{ filter.form.transaction_type }}
+                                </div>
+                                <div class="ms-2 d-inline-block position-relative btn-placeholder">
+                                    {% if request.GET.transaction_type %}
+                                        <button type="button" class="btn-close position-absolute top-0 end-0 mt-1 me-1" 
+                                                onclick="resetTypeFilter()" 
+                                                aria-label="Reset type filter">
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                        <div class="me-1">
-                            <label for="{{ filter.form.start_date.id_for_label }}">{{ filter.form.start_date.label }}</label>
-                            {{ filter.form.start_date }}
-                        </div>
-                        <div class="mx-1">
-                            <label for="{{ filter.form.end_date.id_for_label }}">{{ filter.form.end_date.label }}</label>
-                            {{ filter.form.end_date }}
-                        </div>
-                        <div class="ms-1 me-4">
-                            <div class="d-inline-block position-relative btn-placeholder">
-                                {% if filter_applied %}
-                                    <a href="{% url 'transaction_list' %}" class="btn-close ms-2 position-absolute" aria-label="Reset filters"></a>
-                                {% endif %}
+                        <!-- Date Filters -->
+                        <div class="filter-group position-relative">
+                            <div class="d-flex align-items-center">
+                                <div class="me-1">
+                                    <label for="{{ filter.form.start_date.id_for_label }}">{{ filter.form.start_date.label }}</label>
+                                    {{ filter.form.start_date }}
+                                </div>
+                                <div class="me-1">
+                                    <label for="{{ filter.form.end_date.id_for_label }}">{{ filter.form.end_date.label }}</label>
+                                    {{ filter.form.end_date }}
+                                </div>
+                                <div class="ms-2 d-inline-block position-relative btn-placeholder">
+                                    {% if request.GET.start_date or request.GET.end_date %}
+                                        <button type="button" class="btn-close position-absolute top-0 end-0 mt-1 me-1" 
+                                                onclick="resetDateFilter()" 
+                                                aria-label="Reset date filter">
+                                        </button>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                         <noscript>
@@ -47,19 +67,5 @@
         {% render_table table %}
     </div>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('filter-form');
-    const inputs = form.querySelectorAll('input, select');
-
-    inputs.forEach(el => {
-      el.addEventListener('change', () => {
-        // Only submit if the field has a non-empty value
-        if (el.value.trim() !== '') {
-          form.submit();
-        }
-      });
-    });
-  });
-</script>
+<script src="{% static 'js/transaction_list.js' %}"></script>
 {% endblock %}

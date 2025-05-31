@@ -29,8 +29,7 @@ class TransactionFilter(django_filters.FilterSet):
             ('expense', 'Expcences'),
             ('income', 'Income'),
         ),
-        empty_label='Select Transaction Type',
-        # initial='all',
+        empty_label='All',
         method='filter_transaction_type',
         widget=forms.Select(attrs={'class': 'form-control'})
     )
@@ -60,4 +59,4 @@ class TransactionFilter(django_filters.FilterSet):
             case 'income':
                 return queryset.filter(amount__gt=0)
             case _:
-                return queryset
+                return Transaction.objects.all()
