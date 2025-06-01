@@ -17,7 +17,6 @@
     url.searchParams.delete('transaction_type');
     window.location.href = url.toString();
   }
-
   function resetDateFilter() {
     const url = new URL(window.location);
     url.searchParams.delete('start_date');
@@ -39,3 +38,13 @@
   }
 
   document.addEventListener('DOMContentLoaded', cleanUrl);
+
+// For transfer form showing
+const modal = new bootstrap.Modal(document.getElementById("modal"));
+
+htmx.on("htmx:afterSwap", (e) => {
+  // Response targeting #dialog => show the modal
+  if (e.detail.target.id == "dialog") {
+    modal.show();
+  }
+})

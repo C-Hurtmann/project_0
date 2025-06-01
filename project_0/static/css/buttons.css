@@ -1,0 +1,15 @@
+.btn-outline-brand {
+  color: var(--color-brand-main);
+  border-color: var(--color-brand-main);
+  background-color: transparent;
+}
+
+.btn-outline-brand:hover {
+  background-color: var(--color-brand-main);
+  border-color: var(--color-brand-main);
+  color: white;
+}
+
+.btn-outline-brand:focus {
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}

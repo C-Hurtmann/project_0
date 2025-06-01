@@ -1,5 +1,7 @@
 @import '_navbar.css';
 @import '_sidebar.css';
+@import 'colors.css';
+@import 'buttons.css';
 @import 'dashboard.css';
 @import 'transaction_list.css';
 

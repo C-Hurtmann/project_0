@@ -10,6 +10,11 @@
             <div class="col-md-3">
                 <h3 class="mb-3">Transactions</h3>
             </div>
+            <div class="col-mb-3">
+                <button hx-get="{% url 'add_transfer' %}" hx-target="#dialog" class='btn btn-outline-brand'>
+                    Create Transfer
+                </button>
+            </div>
             <div class="col-md-9">
                 <form id="filter-form" method="get" class="form">
                     <div class="d-flex align-items-center justify-content-end">
@@ -67,5 +72,12 @@
         {% render_table table %}
     </div>
 </div>
-<script src="{% static 'js/transaction_list.js' %}"></script>
+<!-- Modal for create transfer form -->
+<div id="modal" class="modal fade">
+    <div id="dialog" class="modal-dialog modal-dialog-centered" hx-target="this"></div>
+</div>
 {% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/transaction_list.js' %}"></script>
+{% endblock%}
