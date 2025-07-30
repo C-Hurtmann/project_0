@@ -6,6 +6,14 @@ class TransferForm(forms.ModelForm):
     class Meta:
         model = Transfer
         fields = ['income', 'outcome']
+        widgets = {
+            'income': forms.Select(
+                attrs={'class': 'form-select'}
+            ),
+            'outcome': forms.Select(
+                attrs={'class': 'form-select'}
+            ),
+        }
 
     def clean(self):
         cleaned_data = super().clean()

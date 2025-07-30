@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Q
@@ -36,6 +38,13 @@ class Transaction(models.Model):
     class Meta:
         db_table = 'transactions'
         ordering = ['-unix_time']
+
+    @property
+    def date(self):
+        return datetime.fromtimestamp(self.unix_time, tz=timezone.utc)
+
+    def __str__(self):
+        return f'{self.date} | {self.amount}'
 
 
 class Transfer(models.Model):
