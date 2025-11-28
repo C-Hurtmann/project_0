@@ -20,6 +20,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "bootstrap": "^5.3.8",
     "chart.js": "^4.5.1",
     "echarts": "^6.0.0",
     "pinia": "^3.0.3",

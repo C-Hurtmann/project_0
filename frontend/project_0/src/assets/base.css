@@ -1,0 +1,24 @@
+@import 'AppNavbar.css';
+@import 'AppSidebar.css';
+@import 'colors.css';
+@import 'buttons.css';
+@import 'dashboard.css';
+
+
+.body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    padding-top: 56px;
+    flex: 1;
+    background-color: #f8f9fa;
+}
+
+.content-wrapper {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+}
