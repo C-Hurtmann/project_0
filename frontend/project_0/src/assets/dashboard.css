@@ -58,7 +58,7 @@
 
 .card-header h3 {
     font-size: 1.5rem;
-    font-weight: 600; /* TODO check what is it */
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
@@ -66,19 +66,4 @@
     width: 100%;
     height: 100%;
     padding: 10px;
-}
-
-.card-body .js-plotly-plot {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.card-body .js-plotly-plot .plot-container .main-svg {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.card-body .plotly {
-    width: 100% !important;
-    height: 100% !important;
 }

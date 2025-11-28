@@ -1,6 +1,6 @@
 <template>
   <!-- Example: placeholder cards -->
-  <div class="card-rectangle shadow-sm">
+  <div class="card card-rectangle shadow-sm">
     <div class="card-body">
       <!-- here you could embed a chart component -->
       Dashboard content 1
