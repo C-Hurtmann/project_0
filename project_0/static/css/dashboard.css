@@ -14,7 +14,7 @@
     background-color: white;
     border: 1px solid #dee2e6;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .card-square, .card-rectangle {
@@ -63,6 +63,8 @@
 }
 
 .card-body {
+    overflow: visible;
+    position: relative;
     width: 100%;
     height: 100%;
     padding: 10px;

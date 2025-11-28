@@ -8,7 +8,7 @@
   </div>
   <div class="card card-square shadow-sm">
     <div class="card-body">
-      Dashboard content 2
+      <PieChart />
     </div>
   </div>
   <!-- add more cards or use v‑for to render dynamic cards -->
@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 // If you have dynamic data/plots, you could fetch or compute them here
+import PieChart from '../components/PieChart.vue'
 </script>
 
 <style scoped>

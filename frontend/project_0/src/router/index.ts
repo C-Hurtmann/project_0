@@ -3,11 +3,14 @@ import Dashboard from '../views/Dashboard.vue';
 
 const routes = [
   {
-    path: '/',          // root → dashboard
-    name: 'Dashboard',
+    path: '/',
+    redirect: '/dashboard'
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
     component: Dashboard
   },
-  // you can add more routes later
 ];
 
 const router = createRouter({

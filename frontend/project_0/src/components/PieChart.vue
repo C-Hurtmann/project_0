@@ -70,7 +70,9 @@ const option = ref({
   },
   tooltip: {
     trigger: 'item',
-    formatter: '{a} <br/>{b}: {c} ({d}%)'
+    formatter: '{a} <br/>{b}: {c} ({d}%)',
+    appendToBody: true,
+    confine: false
   },
   series: [
     {
@@ -106,5 +108,7 @@ const option = ref({
 .chart-wrapper {
   width: 100%;
   height: 400px;
+  overflow: visible;
+  position: relative;
 }
 </style>
