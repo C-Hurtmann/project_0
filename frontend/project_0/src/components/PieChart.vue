@@ -107,7 +107,7 @@ const option = ref({
 <style scoped>
 .chart-wrapper {
   width: 100%;
-  height: 400px;
+  height: 100%;
   overflow: visible;
   position: relative;
 }

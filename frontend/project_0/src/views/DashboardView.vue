@@ -3,7 +3,7 @@
   <div class="card card-rectangle shadow-sm">
     <div class="card-body">
       <!-- here you could embed a chart component -->
-      Dashboard content 1
+      <BarChart />
     </div>
   </div>
   <div class="card card-square shadow-sm">
@@ -16,7 +16,8 @@
 
 <script setup lang="ts">
 // If you have dynamic data/plots, you could fetch or compute them here
-import PieChart from '../components/PieChart.vue'
+import PieChart from '@/components/PieChart.vue'
+import BarChart from '@/components/BarChart.vue';
 </script>
 
 <style scoped>
